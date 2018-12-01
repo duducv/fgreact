@@ -1,0 +1,31 @@
+
+html, body {
+    margin:0;
+    padding: 0;
+    background: url('./images/img-background2.jpg');
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+}
+
+
+$theme-colors: (
+    "primary": #1E2032,
+    "primary-shadow": #100F20,
+    "primary-secondary": #493364,
+    "primary-opacity": rgba(30, 32, 49, .0),
+    "opacity": rgba(0,0,0, .0),
+    "secondary": rgba(239, 240, 242, 1),
+    "button": #6A3DF3,
+);
+
+$font-family-sans-serif: "Quicksand", "sans-serif";
+
+
+@import "./main.css";
+@import "./normalize.css";
+@import "./painel.css";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+
+
