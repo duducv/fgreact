@@ -23,7 +23,7 @@ const IfLogged = (props) => {
             </a>
             <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <Link to='/profile' className='dropdown-item' href='#'>Meu Perfil</Link>
-              <a href='#' className='dropdown-item'>Últimas partidas</a>
+              <a href='#' className='dropdown-item'>Minhas partidas</a>
               <Link to='/' className='dropdown-item' href='#' onClick={props.changeIsLogged}>Sair</Link>
             </div>
           </div>
