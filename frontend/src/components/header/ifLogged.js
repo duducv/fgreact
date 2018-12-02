@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const imgSkillGlobal = require('../../../public/assets/images/skillglobal.png')
 const imgSteamIcon = require('../../../public/assets/images/logo-steam-white.svg')
 
 const IfLogged = (props) => {
@@ -15,7 +14,6 @@ const IfLogged = (props) => {
   } else {
     return (
       <ul className='nav align-items-center'>
-        <li className='nav-item'><img className='rounded-circle' src={imgSkillGlobal} style={{width: '4em'}} /></li>
         <li className='nav-item text-white px-2'>
           <div className='dropdown'>
             <a className='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>

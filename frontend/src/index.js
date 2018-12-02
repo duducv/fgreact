@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import '../public/assets/style.scss'
+import '@babel/polyfill'
 
 import App from './App'
 import configureStore from './redux/store'
