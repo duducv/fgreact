@@ -4,22 +4,6 @@ export const LoginOrLogOut = () => ({
   type: 'AUTH'
 })
 
-/* export const login = (data) => {
-  return dispatch => {
-    axios.post('/login', data)
-      .then((response) => {
-        console.log(response)
-        dispatch(LoginOrLogOut())
-        dispatch({ type: 'SPINNER_ON' })
-      }
-      )
-      .catch(err => {
-        console.log(err)
-        dispatch({type: 'SPINNER_OFF'})
-      })
-  }
-} */
-
 export const login = (data) => {
   return async (dispatch) => {
     try {
