@@ -8,7 +8,7 @@ const IfLogged = (props) => {
   if (props.isLogged === false) {
     return (
       <ul className='nav align-items-center'>
-        <li className='nav-item'><button className='btn btn-button py-2' onClick={props.changeIsLogged}>Entrar <img src={imgSteamIcon} style={{width: '2.3em'}} /></button></li>
+        <li className='nav-item'><Link to='/login'><button className='btn btn-button py-2'>Entrar <img src={imgSteamIcon} style={{width: '2.3em'}} /></button></Link></li>
       </ul>
     )
   } else {
