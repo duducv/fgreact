@@ -29,3 +29,17 @@ export const login = (data) => {
     }
   }
 }
+
+export const persistToken = (data) => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get('/me', {
+        headers: {'x-auth-token': localStorage.getItem('token')
+        }})
+      if (response) dispatch(LoginOrLogOut())
+      console.log(response)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}

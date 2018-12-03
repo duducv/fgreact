@@ -12,19 +12,18 @@ import MapVetos from './components/content/MapVetos'
 import Login from './components/content/login'
 import Register from './components/content/register'
 
-import { getTokenAndId } from './redux/actions/login'
+import { getTokenAndId, persistToken } from './redux/actions/login'
 
 class AppRoutes extends Component {
-  componentDidMount = () => {
-    this.props.getTokenAndId()
-    axios.get('/me', {
-      headers: {'x-auth-token': localStorage.getItem('token')
-      }})
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
+  componentDidMount = async () => {
+    try {
+      await this.props.getTokenAndId()
+      await this.props.persistToken()
+    } catch (err) {
+      console.log(err)
+    }
   }
   render () {
-    console.log(this.props.token)
     return (
       <BrowserRouter>
         <Fragment>
@@ -34,7 +33,7 @@ class AppRoutes extends Component {
             {this.props.auth ? (<Route path='/profile' component={Profile} />) : (<Route path='/profile' render={() => <Redirect from='/profile' to='/login' />} />)}
             <Route path='/vetos' component={MapVetos} />
             {!this.props.auth ? (<Route path='/login' component={Login} />) : (<Route path='/login' render={() => <Redirect from='/login' to='/'/>} />)}
-            <Route path='/registrar' component={Register} />
+            {!this.props.auth ? (<Route path='/registrar' component={Register} />) : (<Route path='/registrar' render={() => <Redirect from='/registrar' to='/'/>} />) }
             <Route component={PageNotFound} />
           </Switch>
           <Footer />
@@ -52,7 +51,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getTokenAndId: () => dispatch(getTokenAndId(localStorage.getItem('token'), localStorage.getItem('userId')))
+  getTokenAndId: () => dispatch(getTokenAndId(localStorage.getItem('token'), localStorage.getItem('userId'))),
+  persistToken: () => dispatch(persistToken())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRoutes)

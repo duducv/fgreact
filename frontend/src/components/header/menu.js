@@ -32,7 +32,7 @@ class Menu extends Component {
             </nav>
             <div className='d-flex align-items-center justify-content-center'>
               <nav className='nav navbar d-flex  align-items-center justify-content-center '>
-                <IfLogged isLogged={this.props.auth} changeIsLogged={this.props.LoginOrLogOut} />
+                <IfLogged auth={this.props.auth} changeIsLogged={this.props.LoginOrLogOut} />
               </nav>
             </div>
           </div>

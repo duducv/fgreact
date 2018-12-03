@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 const imgSteamIcon = require('../../../public/assets/images/logo-steam-white.svg')
 
 const IfLogged = (props) => {
-  console.log(`Logado? ${props.isLogged}`)
-  if (props.isLogged === false) {
+  console.log(`Logado? ${props.auth}`)
+  if (props.auth === false) {
     return (
       <ul className='nav align-items-center'>
         <li className='nav-item'>
@@ -27,7 +27,7 @@ const IfLogged = (props) => {
             <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <Link to='/profile' className='dropdown-item' href='#'>Meu Perfil</Link>
               <a href='#' className='dropdown-item'>Minhas partidas</a>
-              <Link to='/' className='dropdown-item' href='#' onClick={props.changeIsLogged}>Sair</Link>
+              <Link to='/' className='dropdown-item' href='#' onClick={() => { localStorage.removeItem('token') }}>Sair</Link>
             </div>
           </div>
         </li>
