@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import IfLogged from './ifLogged'
-import { LoginOrLogOut, logOut } from '../../redux/actions/login'
+import { authSuccess, logOut } from '../../redux/actions/login'
 
 const imgMenuToggle = require('../../../public/assets/images/ion-toggle-menu.svg')
 
@@ -54,7 +54,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => {
   return {
-    LoginOrLogOut: () => dispatch(LoginOrLogOut()),
+    authSuccess: () => dispatch(authSuccess()),
     logOut: () => dispatch(logOut())
 
   }

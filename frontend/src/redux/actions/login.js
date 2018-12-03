@@ -1,6 +1,6 @@
 import axios from '../../axios-public'
 
-export const LoginOrLogOut = () => ({
+export const authSuccess = () => ({
   type: 'AUTH'
 })
 
@@ -20,7 +20,7 @@ export const login = (data) => {
       await localStorage.setItem('userId', response.data[1])
       await dispatch(getTokenAndId(response.data[0], response.data[1]))
       await dispatch({ type: 'NETWORK_OK' })
-      await dispatch(LoginOrLogOut())
+      await dispatch(authSuccess())
       await dispatch({ type: 'SPINNER_OFF' })
     } catch (err) {
       console.log(err.message)
@@ -36,7 +36,7 @@ export const persistToken = (data) => {
       let response = await axios.get('/me', {
         headers: {'x-auth-token': localStorage.getItem('token')
         }})
-      if (response) dispatch(LoginOrLogOut())
+      if (response) dispatch(authSucess())
       console.log(response)
     } catch (err) {
       console.log(err)
