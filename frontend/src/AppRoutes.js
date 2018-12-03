@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from './axios-public'
+
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import Index from './components/content/index'
@@ -15,6 +17,11 @@ import { getTokenAndId } from './redux/actions/login'
 class AppRoutes extends Component {
   componentDidMount = () => {
     this.props.getTokenAndId()
+    axios.get('/me', {
+      headers: {'x-auth-token': localStorage.getItem('token')
+      }})
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
   }
   render () {
     console.log(this.props.token)
