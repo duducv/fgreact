@@ -6,27 +6,27 @@ const Register = () => (
     <div className='row' style={{height: '75vh'}}>
       <div className='col d-flex align-items-start justify-content-center rounded p-2 text-center '>
         <form className='bg-primary p-2' style={{width: '25rem'}}>
-          <div class='form-group'>
-            <input type='email' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Primeiro nome' />
+          <div className='form-group'>
+            <input type='email' className='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Primeiro nome' />
           </div>
-          <div class='form-group'>
-            <input type='email' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Último nome' />
+          <div className='form-group'>
+            <input type='email' className='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Último nome' />
           </div>
-          <div class='form-group'>
+          <div className='form-group'>
 
-            <input type='email' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Email' />
+            <input type='email' className='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Email' />
           </div>
-          <div class='form-group'>
-            <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Senha' />
+          <div className='form-group'>
+            <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Senha' />
           </div>
-          <div class='form-group'>
-            <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Confirme sua senha' />
+          <div className='form-group'>
+            <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Confirme sua senha' />
           </div>
-          <div class='form-group form-check'>
-            <input type='checkbox' class='form-check-input' id='exampleCheck1' />
-            <label class='form-check-label' for='exampleCheck1'>Check me out</label>
+          <div className='form-group form-check'>
+            <input type='checkbox' className='form-check-input' id='exampleCheck1' />
+            <label className='form-check-label' htmlFor='exampleCheck1'>Check me out</label>
           </div>
-          <button type='submit' class='btn btn-primary'>Submit</button>
+          <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
       </div>
     </div>
