@@ -51,7 +51,7 @@ export const logOut = () => {
       await localStorage.removeItem('userId')
       await dispatch(getTokenAndId(null, null))
     } catch (err) {
-
+      console.log(err)
     }
   }
 }
