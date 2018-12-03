@@ -36,7 +36,7 @@ export const persistToken = (data) => {
       let response = await axios.get('/me', {
         headers: {'x-auth-token': localStorage.getItem('token')
         }})
-      if (response) dispatch(authSucess())
+      if (response) dispatch(authSuccess())
       console.log(response)
     } catch (err) {
       console.log(err)
