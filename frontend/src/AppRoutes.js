@@ -15,13 +15,9 @@ import Register from './components/content/register'
 import { getTokenAndId, persistToken } from './redux/actions/login'
 
 class AppRoutes extends Component {
-  componentDidMount = async () => {
-    try {
-      await this.props.getTokenAndId()
-      await this.props.persistToken()
-    } catch (err) {
-      console.log(err)
-    }
+  componentDidMount = () => {
+    this.props.getTokenAndId()
+    this.props.persistToken()
   }
   render () {
     return (
@@ -30,7 +26,7 @@ class AppRoutes extends Component {
           <Header />
           <Switch>
             <Route path='/' component={Index} exact />
-            {this.props.auth ? (<Route path='/profile' component={Profile} />) : (<Route path='/profile' render={() => <Redirect from='/profile' to='/login' />} />)}
+            <Route path='/profile' component={Profile} />
             <Route path='/vetos' component={MapVetos} />
             {!this.props.auth ? (<Route path='/login' component={Login} />) : (<Route path='/login' render={() => <Redirect from='/login' to='/'/>} />)}
             {!this.props.auth ? (<Route path='/registrar' component={Register} />) : (<Route path='/registrar' render={() => <Redirect from='/registrar' to='/'/>} />) }

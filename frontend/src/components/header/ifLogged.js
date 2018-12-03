@@ -27,7 +27,7 @@ const IfLogged = (props) => {
             <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <Link to='/profile' className='dropdown-item' href='#'>Meu Perfil</Link>
               <a href='#' className='dropdown-item'>Minhas partidas</a>
-              <Link to='/' className='dropdown-item' href='#' onClick={() => { localStorage.removeItem('token') }}>Sair</Link>
+              <Link to='/' className='dropdown-item' href='#' onClick={props.logOut}>Sair</Link>
             </div>
           </div>
         </li>

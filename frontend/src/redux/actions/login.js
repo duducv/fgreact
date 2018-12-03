@@ -43,3 +43,15 @@ export const persistToken = (data) => {
     }
   }
 }
+
+export const logOut = () => {
+  return async (dispatch) => {
+    try {
+      await localStorage.removeItem('token')
+      await localStorage.removeItem('userId')
+      await dispatch(getTokenAndId(null, null))
+    } catch (err) {
+
+    }
+  }
+}

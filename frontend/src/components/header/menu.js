@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import IfLogged from './ifLogged'
-import { LoginOrLogOut } from '../../redux/actions/login'
+import { LoginOrLogOut, logOut } from '../../redux/actions/login'
 
 const imgMenuToggle = require('../../../public/assets/images/ion-toggle-menu.svg')
 
 class Menu extends Component {
+  removeTokenAndReload = () => {
+    this.props.logOut()
+    window.location.reload(true)
+  }
   render () {
     return (
       <div className='container-fluid'>
@@ -32,7 +36,7 @@ class Menu extends Component {
             </nav>
             <div className='d-flex align-items-center justify-content-center'>
               <nav className='nav navbar d-flex  align-items-center justify-content-center '>
-                <IfLogged auth={this.props.auth} changeIsLogged={this.props.LoginOrLogOut} />
+                <IfLogged auth={this.props.auth} logOut={this.removeTokenAndReload} />
               </nav>
             </div>
           </div>
@@ -50,7 +54,9 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => {
   return {
-    LoginOrLogOut: () => dispatch(LoginOrLogOut())
+    LoginOrLogOut: () => dispatch(LoginOrLogOut()),
+    logOut: () => dispatch(logOut())
+
   }
 }
 
