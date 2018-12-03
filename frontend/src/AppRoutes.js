@@ -19,7 +19,7 @@ const AppRoutes = (props) => (
         <Route path='/' component={Index} exact />
         {props.auth ? (<Route path='/profile' component={Profile} />) : (<Route path='/profile' render={() => <Redirect from='/profile' to='/login' />} />)}
         <Route path='/vetos' component={MapVetos} />
-        <Route path='/login' component={Login} />
+        {!props.auth ? (<Route path='/login' component={Login} />) : (<Route path='/login' render={() => <Redirect from='/login' to='/'/>} />)}
         <Route path='/registrar' component={Register} />
         <Route component={PageNotFound} />
       </Switch>
