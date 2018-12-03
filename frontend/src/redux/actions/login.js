@@ -10,6 +10,11 @@ export const getTokenAndId = (tokenId, userId) => ({
   userId
 })
 
+export const getUserData = (payload) => ({
+  type: 'GET_DATA',
+  payload
+})
+
 export const login = (data) => {
   return async (dispatch) => {
     try {
@@ -18,6 +23,10 @@ export const login = (data) => {
       console.log(response)
       await localStorage.setItem('token', response.data[0])
       await localStorage.setItem('userId', response.data[1])
+      let getUser = await axios.get('/me', {
+        headers: {'x-auth-token': localStorage.getItem('token')
+        }})
+      await dispatch(getUserData(getUser.data))
       await dispatch(getTokenAndId(response.data[0], response.data[1]))
       await dispatch({ type: 'NETWORK_OK' })
       await dispatch(authSuccess())
@@ -36,8 +45,9 @@ export const persistToken = (data) => {
       let response = await axios.get('/me', {
         headers: {'x-auth-token': localStorage.getItem('token')
         }})
+      await dispatch(getUserData(response.data))
       if (response) dispatch(authSuccess())
-      console.log(response)
+      console.log(response.data)
     } catch (err) {
       console.log(err)
     }

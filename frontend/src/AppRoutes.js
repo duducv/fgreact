@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from './axios-public'
 
 import Header from './components/header/header'
 import Footer from './components/footer/footer'

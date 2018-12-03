@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const imgSteamIcon = require('../../../public/assets/images/logo-steam-white.svg')
 
@@ -19,6 +20,7 @@ const IfLogged = (props) => {
   } else {
     return (
       <ul className='nav align-items-center'>
+        <li className='nav-item text-white'>{props.name}</li>
         <li className='nav-item text-white px-2'>
           <div className='dropdown'>
             <a className='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
@@ -36,4 +38,8 @@ const IfLogged = (props) => {
   }
 }
 
-export default IfLogged
+const mapStateToProps = state => ({
+  name: state.user.data.name
+})
+
+export default connect(mapStateToProps)(IfLogged)
