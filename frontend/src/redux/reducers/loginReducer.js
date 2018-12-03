@@ -5,7 +5,9 @@ const INITIAL_STATE = {
   password: '',
   auth: false,
   spinner: false,
-  authFail: false
+  authFail: false,
+  token: null,
+  userId: null
 }
 
 const auth = (state = INITIAL_STATE, action) => {
@@ -22,6 +24,8 @@ const auth = (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {spinner: false})
     case 'AUTH_ERROR_MESSAGE':
       return UpdateObject(state, {authFail: true})
+    case 'GET_TOKEN_AND_ID':
+      return UpdateObject(state, {token: action.tokenId, userId: action.userId})
     default: return state
   }
 }
