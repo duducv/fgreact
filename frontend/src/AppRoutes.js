@@ -13,7 +13,13 @@ import axios from 'axios'
 
 class AppRoutes extends Component {
   componentDidMount = () => {
-    axios.get('http://localhost:3000', { withCredentials: true }).then(result => console.log(result))
+    axios.get('http://localhost:3000', { withCredentials: true }).then((result) => {
+      if (result.data.length === 0) {
+        console.log('não tem dados')
+      } else {
+        console.log(console.log(result.data))
+      }
+    })
   }
   render () {
     return (
