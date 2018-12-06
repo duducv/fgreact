@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
@@ -9,7 +10,7 @@ import PageNotFound from './components/content/pagenotfound'
 import Profile from './components/content/profile'
 import MapVetos from './components/content/MapVetos'
 import Register from './components/content/register'
-import axios from 'axios'
+import { logOn } from './redux/actions/login'
 
 class AppRoutes extends Component {
   componentDidMount = () => {
@@ -17,7 +18,8 @@ class AppRoutes extends Component {
       if (result.data.length === 0) {
         console.log('não tem dados')
       } else {
-        console.log(console.log(result.data))
+        this.props.logOn()
+        console.log(result.data)
       }
     })
   }
@@ -47,8 +49,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getTokenAndId: () => dispatch(getTokenAndId(localStorage.getItem('token'), localStorage.getItem('userId'))),
-  persistToken: () => dispatch(persistToken())
+  logOn: () => dispatch(logOn())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRoutes)

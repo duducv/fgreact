@@ -24,3 +24,13 @@ export const logOut = () => {
     }
   }
 }
+
+export const logOn = () => {
+  return async (dispatch) => {
+    try {
+      await dispatch(authSuccess())
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
