@@ -1,4 +1,4 @@
-import axios from '../../axios-public'
+import axios from 'axios'
 
 export const authSuccess = () => ({
   type: 'AUTH'
@@ -39,27 +39,10 @@ export const login = (data) => {
   }
 }
 
-export const persistToken = (data) => {
-  return async (dispatch) => {
-    try {
-      let response = await axios.get('/me', {
-        headers: {'x-auth-token': localStorage.getItem('token')
-        }})
-      await dispatch(getUserData(response.data))
-      if (response) dispatch(authSuccess())
-      console.log(response.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
-
 export const logOut = () => {
   return async (dispatch) => {
     try {
-      await localStorage.removeItem('token')
-      await localStorage.removeItem('userId')
-      await dispatch(getTokenAndId(null, null))
+      await axios.get('http://localhost:3000/logout')
     } catch (err) {
       console.log(err)
     }

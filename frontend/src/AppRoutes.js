@@ -8,15 +8,12 @@ import Index from './components/content/index'
 import PageNotFound from './components/content/pagenotfound'
 import Profile from './components/content/profile'
 import MapVetos from './components/content/MapVetos'
-import Login from './components/content/login'
 import Register from './components/content/register'
-
-import { getTokenAndId, persistToken } from './redux/actions/login'
+import axios from 'axios'
 
 class AppRoutes extends Component {
   componentDidMount = () => {
-    this.props.getTokenAndId()
-    this.props.persistToken()
+    axios.get('http://localhost:3000', { withCredentials: true }).then(result => console.log(result))
   }
   render () {
     return (
@@ -27,8 +24,7 @@ class AppRoutes extends Component {
             <Route path='/' component={Index} exact />
             <Route path='/profile' component={Profile} />
             <Route path='/vetos' component={MapVetos} />
-            {!this.props.auth ? (<Route path='/login' component={Login} />) : (<Route path='/login' render={() => <Redirect from='/login' to='/'/>} />)}
-            {!this.props.auth ? (<Route path='/registrar' component={Register} />) : (<Route path='/registrar' render={() => <Redirect from='/registrar' to='/'/>} />) }
+            <Route path='/registrar' component={Register} />
             <Route component={PageNotFound} />
           </Switch>
           <Footer />
