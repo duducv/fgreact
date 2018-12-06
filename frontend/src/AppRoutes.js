@@ -36,8 +36,7 @@ class AppRoutes extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth.auth,
-    token: state.auth.token
+    auth: state.auth.auth
   }
 }
 
