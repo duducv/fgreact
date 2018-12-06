@@ -10,10 +10,10 @@ const IfLogged = (props) => {
     return (
       <ul className='nav align-items-center'>
         <li className='nav-item'>
-          <Link to='/login'>
+          <a href='http://localhost:3000/auth/steam'>
             <button className='btn btn-button py-2'>Entrar <img src={imgSteamIcon} style={{width: '2.3em'}} />
             </button>
-          </Link>
+          </a>
         </li>
       </ul>
     )
