@@ -1,13 +1,8 @@
 import { UpdateObject } from './utility'
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
   auth: false,
-  spinner: false,
-  authFail: false,
-  token: null,
-  userId: null
+  spinner: false
 }
 
 const auth = (state = INITIAL_STATE, action) => {

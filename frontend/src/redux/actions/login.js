@@ -28,6 +28,10 @@ export const logOut = () => {
 export const logOn = () => {
   return async (dispatch) => {
     try {
+      const response = await axios.get('http://localhost:3000', { withCredentials: true })
+      console.log(response.data)
+      if (!response.data.nickname) return
+      await dispatch(getUserData(response.data))
       await dispatch(authSuccess())
     } catch (err) {
       console.log(err)

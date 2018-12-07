@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 const imgSteamIcon = require('../../../public/assets/images/logo-steam-white.svg')
 
 const IfLogged = (props) => {
-  console.log(`Logado? ${props.auth}`)
+  console.log('o estado é ' + props.nickname)
   if (props.auth === false) {
     return (
       <ul className='nav align-items-center'>
@@ -20,7 +20,7 @@ const IfLogged = (props) => {
   } else {
     return (
       <ul className='nav align-items-center'>
-        <li className='nav-item text-white'>{props.name}</li>
+        <li className='nav-item text-white'>{props.nickname}</li>
         <li className='nav-item text-white px-2'>
           <div className='dropdown'>
             <a className='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
@@ -39,7 +39,7 @@ const IfLogged = (props) => {
 }
 
 const mapStateToProps = state => ({
-  name: state.user.data.name
+  nickname: state.user.data.nickname
 })
 
 export default connect(mapStateToProps)(IfLogged)

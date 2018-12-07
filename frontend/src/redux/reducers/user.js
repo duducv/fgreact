@@ -1,7 +1,7 @@
 import { UpdateObject } from './utility'
 
 const INITIAL_STATE = {
-  data: 'Eduardo'
+  data: {}
 }
 
 const user = (state = INITIAL_STATE, action) => {

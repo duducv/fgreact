@@ -14,14 +14,7 @@ import { logOn } from './redux/actions/login'
 
 class AppRoutes extends Component {
   componentDidMount = () => {
-    axios.get('http://localhost:3000', { withCredentials: true }).then((result) => {
-      if (result.data.length === 0) {
-        console.log('não tem dados')
-      } else {
-        this.props.logOn()
-        console.log(result.data)
-      }
-    })
+    this.props.logOn()
   }
   render () {
     return (
