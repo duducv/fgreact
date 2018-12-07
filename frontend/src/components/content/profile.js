@@ -18,10 +18,10 @@ class Profile extends Component {
               <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start p-0'>
                 <div className='card bg-opacity border-opacity text-dark'>
                   <div className='card bg-opacity border-opacity d-flex align-items-center justify-content-center'>
-                    <img className='card-img-top rounded rounded-circle position-absolute' src='https://via.placeholder.com/200x200/6B46ED/FFFFFF' alt='Card image cap' style={{width: '10rem', top: -150}} />
+                    <img className='card-img-top rounded rounded-circle position-absolute' src={this.props.avatar} alt='Card image cap' style={{width: '10rem', top: -150}} />
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
-                    <h5 className='card-title'>Headz\\</h5>
+                    <h5 className='card-title'>{this.props.nickname}</h5>
                     <p className='card-text'>Professional CSGO player for @OWLNAGE.OG</p>
                   </div>
                   <ul className='list-group list-group-flush'>
@@ -66,7 +66,9 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth.auth
+  auth: state.auth.auth,
+  nickname: state.user.data.nickname,
+  avatar: state.user.data.avatarfull
 })
 
 export default connect(mapStateToProps)(Profile)
