@@ -1,9 +1,23 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-	name: String,
-	avatar: String,
-	captain: String,
+	name: {
+		type: String,
+		unique: true,
+		required: true
+	},
+	owner: {
+		type: String,
+		required: true
+	},
+	avatar: { 
+		type: String,
+		required: true
+	},
+	captain: {
+		type: String,
+		required: true
+	},
 	player1: String,
 	player2: String,
 	player3: String,

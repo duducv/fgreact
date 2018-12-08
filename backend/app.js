@@ -4,9 +4,9 @@ const steam = require('passport-steam')
 const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const SteamStrategy = require('./src/auth/authSteam')
-const User = require('./src/auth/models/User')
 const cors = require('cors')
-const authRoutes = require('./src/auth/routes/auth')
+const authRoutes = require('./src/auth/routes/authRoutes')
+const teamRoutes = require('./src/teams/routes/TeamRoute')
 
 mongoose.connect('mongodb://localhost:27017/FortalGamers')
 	.then(() => {
@@ -18,18 +18,11 @@ app.use(cookieSession({
 	maxAge: 24 * 60 * 60 * 10000,
 	keys: ['fortalgamers'],
 }))
-
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
 app.use(cors({origin:'http://localhost:8080', credentials: true}))
-app.use('/api', authRoutes)
-
-app.get('/me', (req, res) => {
-
-	User.findById(req.user).then(result => res.send(result))
-  
-})
+app.use('/api', authRoutes, teamRoutes)
 
 const port = 3000 || process.env.PORT 
 
