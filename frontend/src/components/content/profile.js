@@ -5,7 +5,7 @@ class Profile extends Component {
   render () {
     if (this.props.auth) {
       return (
-        <div className='wrapper bg-secondary'>
+        <div className='wrapper bg-secondary' style={{height: '80vh'}}>
           <div className='container-fluid bg-white'>
             <div className='row bg-primary'>
               <div className='col-12 d-flex bg-primary mb-1 rounded align-items-center justify-content-center' style={{height: 200}}>
@@ -32,17 +32,11 @@ class Profile extends Component {
                   </div>
                 </div>
               </div>
-              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex justify-content-center p-1 mt-3' style={{height: '80vh'}}>
+              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex justify-content-center p-1 mt-3'>
                 <div className='card text-center w-100 border-white text-darkbg-white'>
                   <div className='card-header'>
-        Perfil
+        Criar time
                   </div>
-                  <div className='card-body'>
-                    <p className='card-title'>Colocar opções do clan</p>
-                    <p className='card-text'>colocar participações em campeonato</p>
-                    <p className='card-text'>Gráficos?</p>
-                  </div>
-                  <div className='card-footer text-muted' />
                 </div>
               </div>
             </div>
