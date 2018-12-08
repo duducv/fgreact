@@ -19,6 +19,11 @@ $theme-colors: (
     "steam": #171A20
 );
 
+.custom-file-input:lang(pt) ~ .custom-file-label::after {
+    content: "Escolher";
+  }
+
+
 $font-family-sans-serif: "Quicksand", "sans-serif";
 
 

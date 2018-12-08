@@ -1,9 +1,20 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
+import ProfileComponent from './profileComponent'
+
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
 class Profile extends Component {
+  state = {
+    toShow: 'profileStatus'
+  }
+
+  showCreateTeam = () => {
+    this.setState({
+      toShow: 'createTeam'
+    })
+  }
   render () {
     if (this.props.auth) {
       return (
@@ -31,7 +42,7 @@ class Profile extends Component {
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE<small>(s)</small></li>
-                    <li className='list-group-item bg-white'><button className='btn btn-success w-100'>CRIAR EQUIPE +</button></li>
+                    <li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>AMIGO<small>(s)</small></li>
@@ -39,8 +50,9 @@ class Profile extends Component {
                   </ul>
                 </div>
               </div>
-              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex justify-content-center p-1 mt-3'>
-                <div className='card text-center w-100 border-white text-darkbg-white'>
+              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex p-1 mt-3'>
+                <div className='card text-center border-white text-darkbg-white w-100'>
+                  <ProfileComponent toShow={this.state.toShow}/>
                 </div>
               </div>
             </div>
