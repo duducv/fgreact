@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { changeName, changePassword, passwordConfirmation } from '../../../redux/actions/createTeam'
 
+const checkStatus = require('../../../../public/assets/images/check.svg')
+
 class CreateTeam extends Component {
   imgSelectedHandler = (event) => {
     console.log(Math.round(event.target.files[0].size / 1024))
@@ -27,12 +29,19 @@ class CreateTeam extends Component {
           <li className="breadcrumb-item active text-white" aria-current="page">Criar Time</li>
         </ol>
       </nav>
-        <form className='w-50 d-flex flex-column mr-auto ml-auto'>
-          <div className='form-group'>
-            {this.props.name.length < 2 ? (<small id='emailHelp' className='form-text text-warning'>O nome da equipe deverá ter no mínimo 02 carácteres alfanuméricos</small>) : (null)}
-            <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
+        <form className='d-flex flex-column mr-auto ml-auto'>
+          <div className='form-group d-flex'>
+            <ul className='nav'>
+              <li className='nav-item'>
+                <div>
+                  {this.props.name.length < 2 ? (<small id='emailHelp' className='form-text text-warning'>O nome da equipe deverá ter no mínimo 02 carácteres alfanuméricos</small>) : (null)}
+                  <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
+                </div>
+              </li>
+              <li className='nav-item ml-4 mt-4'><img src={checkStatus} style={{width: '1.5em'}}></img></li>
+            </ul>
           </div>
-          <div className="input-group mb-3">
+          <div className="input-group mb-3 d-flex">
             <div className="custom-file">
               <input type="file" className="custom-file-input custom-file-label-pt text-center" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
               <label className="custom-file-label" htmlFor="inputGroupFile01" ></label>
@@ -40,7 +49,7 @@ class CreateTeam extends Component {
           </div>
           <div className='form-group'>
             {this.props.password.length < 6 ? (<small id='emailHelp' className='form-text text-warning'>mínimo de 06 caracteres</small>) : (null)}
-            <input type='password' className='form-control text-center' id='exampleInputPassword1' placeholder='Senha para entrar na equipe' onChange={this.onHandlePassword} />
+            <input type='password' className='form-control text-center' id='exampleInputPassword1' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
           </div>
           <div className='form-group'>
             {this.props.password !== this.props.confirmpassword ? (<small id='emailHelp' className='form-text text-warning'>O password deve ser igual</small>) : (null)}
