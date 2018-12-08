@@ -28,7 +28,7 @@ function(identifier, profile, done) {
 				_id: profile._json.steamid,
 				realname: profile._json.realname,
 				nickname: profile._json.personaname,
-				profileurl: profile._json.profile,
+				profileurl: profile._json.profileurl,
 				avatarfull: profile._json.avatarfull,
 			}).save().then((newUser) => {
 				done(null, newUser)

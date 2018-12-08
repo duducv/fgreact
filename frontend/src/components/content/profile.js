@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
+const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
+
 class Profile extends Component {
   render () {
     if (this.props.auth) {
@@ -22,21 +24,23 @@ class Profile extends Component {
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
                     <h5 className='card-title'>{this.props.nickname}</h5>
-                    <p className='card-text'>Professional CSGO player for @OWLNAGE.OG</p>
+                    <p className='card-text'>CSGO player for @OWLNAGE.OG</p>
                   </div>
                   <ul className='list-group list-group-flush'>
-                    <li className='list-group-item bg-white text-dark'>Medalhas</li>
+                    <li className='list-group-item bg-white'><a className='btn btn-primary text-white w-100' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                   </ul>
-                  <div className='card-body bg-white rounded-bottom'>
-                    <p>Redes sociais</p>
-                  </div>
+                  <ul className='list-group list-group-flush mt-2'>
+                    <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE<small>(s)</small></li>
+                    <li className='list-group-item bg-white'><button className='btn btn-success w-100'>CRIAR EQUIPE +</button></li>
+                  </ul>
+                  <ul className='list-group list-group-flush mt-2'>
+                    <li className='list-group-item bg-white rounded-top d-flex'>AMIGO<small>(s)</small></li>
+                    <li className='list-group-item bg-white'>Não possui amigos</li>
+                  </ul>
                 </div>
               </div>
               <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex justify-content-center p-1 mt-3'>
                 <div className='card text-center w-100 border-white text-darkbg-white'>
-                  <div className='card-header'>
-        Criar time
-                  </div>
                 </div>
               </div>
             </div>
@@ -62,7 +66,8 @@ class Profile extends Component {
 const mapStateToProps = state => ({
   auth: state.auth.auth,
   nickname: state.user.data.nickname,
-  avatar: state.user.data.avatarfull
+  avatar: state.user.data.avatarfull,
+  profileurl: state.user.data.profileurl
 })
 
 export default connect(mapStateToProps)(Profile)
