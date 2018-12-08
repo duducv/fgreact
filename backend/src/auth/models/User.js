@@ -6,9 +6,8 @@ const userSchema = new mongoose.Schema({
 	nickname: String,
 	profileurl: String,
 	avatarfull: String,
-	
-
+	team: String
 })
   
-module.exports = mongoose.model('steam', userSchema)
+module.exports = mongoose.model('users', userSchema)
   

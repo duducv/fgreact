@@ -13,7 +13,7 @@ passport.deserializeUser((id, done) => {
 }) 
   
 module.exports = passport.use(new SteamStrategy({
-	returnURL: 'http://localhost:3000/auth/steam/return',
+	returnURL: 'http://localhost:3000/api/auth/steam/return',
 	realm: 'http://localhost:3000',
 	apiKey: 'BF5FD55E42A9CEF246E9FCB3FBD7FFB7'
 },
@@ -30,6 +30,7 @@ function(identifier, profile, done) {
 				nickname: profile._json.personaname,
 				profileurl: profile._json.profileurl,
 				avatarfull: profile._json.avatarfull,
+				team: 'none'
 			}).save().then((newUser) => {
 				done(null, newUser)
 			})

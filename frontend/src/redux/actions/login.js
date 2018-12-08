@@ -18,7 +18,7 @@ export const getUserData = (payload) => ({
 export const logOut = () => {
   return async (dispatch) => {
     try {
-      await axios.get('http://localhost:3000/logout')
+      await axios.get('http://localhost:3000/api/logout')
     } catch (err) {
       console.log(err)
     }
@@ -28,7 +28,7 @@ export const logOut = () => {
 export const logOn = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:3000', { withCredentials: true })
+      const response = await axios.get('http://localhost:3000/me', { withCredentials: true })
       console.log(response.data)
       if (!response.data.nickname) return
       await dispatch(getUserData(response.data))

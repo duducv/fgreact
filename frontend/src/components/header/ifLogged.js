@@ -10,7 +10,7 @@ const IfLogged = (props) => {
     return (
       <ul className='nav align-items-center'>
         <li className='nav-item'>
-          <a href='http://localhost:3000/auth/steam'>
+          <a href='http://localhost:3000/api/auth/steam'>
             <button className='btn btn-button py-2'>Entrar <img src={imgSteamIcon} style={{width: '2.3em'}} />
             </button>
           </a>
@@ -29,7 +29,7 @@ const IfLogged = (props) => {
             <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <Link to='/profile' className='dropdown-item' href='#'>Meu Perfil</Link>
               <a href='#' className='dropdown-item'>Minhas partidas</a>
-              <a className='dropdown-item' href='http://localhost:3000/logout'>Sair</a>
+              <a className='dropdown-item' href='http://localhost:3000/api/logout'>Sair</a>
             </div>
           </div>
         </li>
