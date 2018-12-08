@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { changeName, changePassword, passwordConfirmation } from '../../../redux/actions/createTeam'
 
 const checkStatus = require('../../../../public/assets/images/check.svg')
+const imageUpload = require('../../../../public/assets/images/image_upload.svg')
 
 class CreateTeam extends Component {
   imgSelectedHandler = (event) => {
@@ -49,11 +50,11 @@ class CreateTeam extends Component {
           </div>
           <div className='form-group'>
             {this.props.password.length < 6 ? (<small id='emailHelp' className='form-text text-warning'>mínimo de 06 caracteres</small>) : (null)}
-            <input type='password' className='form-control text-center' id='exampleInputPassword1' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
+            <input type='password' className='form-control text-center' id='InputPassword' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
           </div>
           <div className='form-group'>
             {this.props.password !== this.props.confirmpassword ? (<small id='emailHelp' className='form-text text-warning'>O password deve ser igual</small>) : (null)}
-            <input type='password' className='form-control text-center' id='exampleInputPassword1' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
+            <input type='password' className='form-control text-center' id='confirmPassword' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
           </div>
           <button type='submit' className='btn btn-success'>Criar</button>
         </form>
