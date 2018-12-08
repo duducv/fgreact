@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import ProfileComponent from './profileComponent'
+import ProfileComponent from './profile/profileComponent'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
@@ -52,7 +52,7 @@ class Profile extends Component {
               </div>
               <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex p-1 mt-3'>
                 <div className='card text-center border-white text-darkbg-white w-100'>
-                  <ProfileComponent toShow={this.state.toShow}/>
+                  <ProfileComponent toShow={this.state.toShow} />
                 </div>
               </div>
             </div>
