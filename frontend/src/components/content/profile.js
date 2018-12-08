@@ -27,7 +27,7 @@ class Profile extends Component {
                     <p className='card-text'>CSGO player for @OWLNAGE.OG</p>
                   </div>
                   <ul className='list-group list-group-flush'>
-                    <li className='list-group-item bg-white'><a className='btn btn-primary text-white w-100' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
+                    <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE<small>(s)</small></li>
