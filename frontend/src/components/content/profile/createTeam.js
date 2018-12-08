@@ -44,7 +44,7 @@ class CreateTeam extends Component {
           <div className="input-group mb-3 d-flex">
             <div className="custom-file">
               <input type="file" className="custom-file-input custom-file-label-pt text-center" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-              <label className="custom-file-label" htmlFor="inputGroupFile01" ></label>
+              <label className="custom-file-label" htmlFor="inputGroupFile01" ><span>avatar da equipe <img src={imageUpload} style={{width: '1em'}}></img></span></label>
             </div>
           </div>
           <div className='form-group'>
