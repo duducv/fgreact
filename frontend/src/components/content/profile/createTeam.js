@@ -41,9 +41,7 @@ class CreateTeam extends Component {
           <small id='emailHelp' className='form-text text-primary mb-2'>Nome: mínimo 02 e máximo 50 caracteres.</small>
           <small id='passwordlengthwarning' className='form-text text-primary mb-2'>Password: mínimo 06 e máximo 50 caracteres.</small>
         </div>
-       
-          { this.props.limitteamserror ? (<div className='alert alert-danger' role='alert'><small id='passwordlengthwarning' className='form-text text-primary mb-2'>Saia de uma equipe antes de criar/entrar em outra.</small></div>) : (null)}
-        
+        { this.props.limitteamserror ? (<div className='alert alert-danger' role='alert'><small id='passwordlengthwarning' className='form-text text-primary mb-2'>Saia de uma equipe antes de criar/entrar em outra.</small></div>) : (null)}
       </nav>
         <form className='d-flex flex-column mr-3 ml-3'>
           <div className='form-group d-flex flex-column'>
@@ -61,6 +59,7 @@ class CreateTeam extends Component {
             <input type='password' className='form-control text-center' id='confirmPassword' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
           </div>
           <button type='button' className='btn btn-success' onClick={this.createNewTeam}>Criar</button>
+          {this.props.spinner ? (<div className='loader-white ml-auto mr-auto mt-2' style={{height: '10em', width: '10em'}} />) : (null)}
         </form>
           </>
     )
@@ -75,7 +74,8 @@ const mapStateToProps = state => ({
   dontmatchpassword: state.createTeam.dontmatchpassword,
   passwordlengtherror: state.createTeam.passwordlengtherror,
   namelengtherror: state.createTeam.namelengtherror,
-  limitteamserror: state.createTeam.limitteamserror
+  limitteamserror: state.createTeam.limitteamserror,
+  spinner: state.createTeam.spinner
 })
 
 const mapDispatchToProps = dispatch => ({

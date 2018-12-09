@@ -34,6 +34,14 @@ export const exceedsLimitTeams = () => ({
   type: 'EXCEEDS_LIMIT_TEAMS'
 })
 
+export const spinnerOn = () => ({
+  type: 'SPINNER_ON'
+})
+
+export const spinnerOff = () => ({
+  type: 'SPINNER_OFF'
+})
+
 export const changeName = (payload) => {
   return async dispatch => {
     try {
@@ -49,14 +57,30 @@ export const changeName = (payload) => {
 export const createNewTeam = (payload) => {
   return async dispatch => {
     try {
+      await dispatch(spinnerOn())
       let result = await axios.post('/team/new', payload)
       console.log(result)
     } catch (err) {
-      if (err.response.data === '"name" length must be at least 2 characters long' || err.response.data === '"name" is not allowed to be empty') dispatch(nameLengthError())
-      if (err.response.data === 'team name already in use') dispatch(nameInUse())
-      if (err.response.data === 'password do not match') dispatch(passwordDontMatch())
-      if (err.response.data === '"password" is not allowed to be empty' || err.response.data === '"password" length must be at least 6 characters long') dispatch(passwordLengthError())
-      if (err.response.data === 'each player could have only one team') dispatch(exceedsLimitTeams())
+      if (err.response.data === '"name" length must be at least 2 characters long' || err.response.data === '"name" is not allowed to be empty') {
+        dispatch(spinnerOff())
+        dispatch(nameLengthError())
+      }
+      if (err.response.data === 'team name already in use') {
+        dispatch(spinnerOff())
+        dispatch(nameInUse())
+      }
+      if (err.response.data === 'password do not match') {
+        dispatch(spinnerOff())
+        dispatch(passwordDontMatch())
+      }
+      if (err.response.data === '"password" is not allowed to be empty' || err.response.data === '"password" length must be at least 6 characters long') {
+        dispatch(spinnerOff())
+        dispatch(passwordLengthError())
+      }
+      if (err.response.data === 'each player could have only one team') {
+        dispatch(spinnerOff())
+        dispatch(exceedsLimitTeams())
+      }
       console.log(err.response.data)
     }
   }

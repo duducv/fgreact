@@ -9,7 +9,8 @@ const INITIAL_STATE = {
   namelengtherror: false,
   dontmatchpassword: false,
   passwordlengtherror: false,
-  limitteamserror: false
+  limitteamserror: false,
+  spinner: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,6 +33,10 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {passwordlengtherror: true})
     case 'EXCEEDS_LIMIT_TEAMS':
       return UpdateObject(state, {limitteamserror: true})
+    case 'SPINNER_ON':
+      return UpdateObject(state, {spinner: true})
+    case 'SPINNER_OFF':
+      return UpdateObject(state, {spinner: false})
     default: return state
   }
 }

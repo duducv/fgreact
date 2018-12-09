@@ -9,7 +9,7 @@ const ProfileComponent = (props) => {
       <CreateTeam />
     )
   }
-  if (props.toShow === 'profileStatus') {
+  if (props.toShow === 'index') {
     return (
       <ProfileStatus />
     )

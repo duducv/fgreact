@@ -2,18 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import ProfileComponent from './profile/profileComponent'
+import { createTeam } from '../../redux/actions/profileRoutes'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
 class Profile extends Component {
-  state = {
-    toShow: 'profileStatus'
-  }
-
+  
   showCreateTeam = () => {
-    this.setState({
-      toShow: 'createTeam'
-    })
+    this.props.createTeamComponent()
   }
   render () {
     if (this.props.auth) {
@@ -52,7 +48,7 @@ class Profile extends Component {
               </div>
               <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex p-1 mt-3'>
                 <div className='card text-center border-white text-darkbg-white w-100'>
-                  <ProfileComponent toShow={this.state.toShow} />
+                  <ProfileComponent toShow={this.props.location} />
                 </div>
               </div>
             </div>
@@ -79,7 +75,12 @@ const mapStateToProps = state => ({
   auth: state.auth.auth,
   nickname: state.user.data.nickname,
   avatar: state.user.data.avatarfull,
-  profileurl: state.user.data.profileurl
+  profileurl: state.user.data.profileurl,
+  location: state.profileLocation.location
 })
 
-export default connect(mapStateToProps)(Profile)
+const mapDispatchToProps = dispatch => ({
+  createTeamComponent: (payload) => dispatch(createTeam('createTeam'))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
