@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   confirmpassword: '',
   image: '',
   nameinuse: false,
+  namelengtherror: false,
   dontmatchpassword: false,
   passwordlengtherror: false
 }
@@ -22,6 +23,8 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {nameinuse: true})
     case 'NAME_NOT_IN_USE':
       return UpdateObject(state, {nameinuse: false})
+    case 'NAME_LENGTH_ERROR':
+      return UpdateObject(state, {namelengtherror: true})
     case 'PASSWORD_DONT_MATCH':
       return UpdateObject(state, {dontmatchpassword: true})
     case 'PASSWORD_LENGTH_ERROR':

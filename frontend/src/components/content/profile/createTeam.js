@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from '../../../axios-public'
 
 import { changeName, changePassword, passwordConfirmation, createNewTeam } from '../../../redux/actions/createTeam'
 
-const checkStatus = require('../../../../public/assets/images/check.svg')
 const imageUpload = require('../../../../public/assets/images/image_upload.svg')
 
 class CreateTeam extends Component {
@@ -35,26 +33,31 @@ class CreateTeam extends Component {
   render () {
     return (
       <>
-      <nav aria-label="breadcrumb d-flex w-100">
-        <ol className="breadcrumb bg-primary justify-content-center align-items-center">
-          <li className="breadcrumb-item active text-white" aria-current="page">Criar Time</li>
+      <nav aria-label='breadcrumb d-flex'>
+        <ol className='breadcrumb bg-primary justify-content-center align-items-center'>
+          <li className='breadcrumb-item active text-white' aria-current='page'>Criar Time</li>
         </ol>
+        <div className='alert alert-warning' role='alert'>
+          <small id='emailHelp' className='form-text text-primary mb-2'>Nome: mínimo 02 e máximo 50 caracteres.</small>
+          <small id='emailHelp' className='form-text text-primary mb-2'>Avatar: formatos: jpg, png. Tamanho máximo: 250kb</small>
+          <small id='passwordlengthwarning' className='form-text text-primary mb-2'>Password: mínimo 06 e máximo 50 caracteres.</small>
+        </div>
       </nav>
         <form className='d-flex flex-column mr-auto ml-auto'>
           <div className='form-group d-flex flex-column'>
-            <small id='emailHelp' className='form-text text-warning mb-2'>Mínimo 02 carácteres. Apenas alfanuméricos.</small>
             { this.props.name.length > 2 && this.props.nameinuse ? (<small id='emailHelp' className='form-text text-danger mb-2'>Nome já está em uso.</small>) : (null) }
+            { this.props.namelengtherror ? (<small id='passwordlengtherror' className='form-text text-danger mb-2'>Mínimo 02 e Máximo 100 caracteres.</small>) : (null) }
             <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
           </div>
-          <div className="input-group mb-3 d-flex">
-            <div className="custom-file">
-              <input type="file" className="custom-file-input custom-file-label-pt text-center" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-              <label className="custom-file-label" htmlFor="inputGroupFile01" ><span>avatar da equipe <img src={imageUpload} style={{width: '1em'}}></img></span></label>
+          <div className='input-group mb-3 d-flex'>
+            <div className='custom-file'>
+              <input type='file' className='custom-file-input custom-file-label-pt text-center' id='inputGroupFile01' aria-describedby='inputGroupFileAddon01' />
+              <label className='custom-file-label' htmlFor='inputGroupFile01' ><span>avatar da equipe <img src={imageUpload} style={{width: '1em'}}></img></span></label>
             </div>
           </div>
           <div className='form-group'>
-            { this.props.password.length < 6 ? (<small id='passwordlengthwarning' className='form-text text-warning mb-2'>Mínimo 6 caracteres</small>) : (null) }
-            { this.props.passwordlengtherror ? (<small id='passwordlengtherror' className='form-text text-danger mb-2'>Mínimo 6 e Máximo 50 caracteres.</small>) : (null) }
+
+            { this.props.passwordlengtherror ? (<small id='passwordlengtherror' className='form-text text-danger mb-2'>Mínimo 06 e Máximo 50 caracteres.</small>) : (null) }
             <input type='password' className='form-control text-center' id='InputPassword' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
           </div>
           <div className='form-group'>
@@ -74,7 +77,8 @@ const mapStateToProps = state => ({
   confirmpassword: state.createTeam.confirmpassword,
   nameinuse: state.createTeam.nameinuse,
   dontmatchpassword: state.createTeam.dontmatchpassword,
-  passwordlengtherror: state.createTeam.passwordlengtherror
+  passwordlengtherror: state.createTeam.passwordlengtherror,
+  namelengtherror: state.createTeam.namelengtherror
 })
 
 const mapDispatchToProps = dispatch => ({
