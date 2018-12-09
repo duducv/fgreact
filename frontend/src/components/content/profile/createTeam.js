@@ -35,25 +35,21 @@ class CreateTeam extends Component {
       <>
       <nav aria-label='breadcrumb d-flex'>
         <ol className='breadcrumb bg-primary justify-content-center align-items-center'>
-          <li className='breadcrumb-item active text-white' aria-current='page'>Criar Time</li>
+          <li className='breadcrumb-item active text-white' aria-current='page'>Crie sua equipe</li>
         </ol>
         <div className='alert alert-warning' role='alert'>
           <small id='emailHelp' className='form-text text-primary mb-2'>Nome: mínimo 02 e máximo 50 caracteres.</small>
-          <small id='emailHelp' className='form-text text-primary mb-2'>Avatar: formatos: jpg, png. Tamanho máximo: 250kb</small>
           <small id='passwordlengthwarning' className='form-text text-primary mb-2'>Password: mínimo 06 e máximo 50 caracteres.</small>
         </div>
+       
+          { this.props.limitteamserror ? (<div className='alert alert-danger' role='alert'><small id='passwordlengthwarning' className='form-text text-primary mb-2'>Saia de uma equipe antes de criar/entrar em outra.</small></div>) : (null)}
+        
       </nav>
-        <form className='d-flex flex-column mr-auto ml-auto'>
+        <form className='d-flex flex-column mr-3 ml-3'>
           <div className='form-group d-flex flex-column'>
             { this.props.name.length > 2 && this.props.nameinuse ? (<small id='emailHelp' className='form-text text-danger mb-2'>Nome já está em uso.</small>) : (null) }
             { this.props.namelengtherror ? (<small id='passwordlengtherror' className='form-text text-danger mb-2'>Mínimo 02 e Máximo 100 caracteres.</small>) : (null) }
             <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
-          </div>
-          <div className='input-group mb-3 d-flex'>
-            <div className='custom-file'>
-              <input type='file' className='custom-file-input custom-file-label-pt text-center' id='inputGroupFile01' aria-describedby='inputGroupFileAddon01' />
-              <label className='custom-file-label' htmlFor='inputGroupFile01' ><span>avatar da equipe <img src={imageUpload} style={{width: '1em'}}></img></span></label>
-            </div>
           </div>
           <div className='form-group'>
 
@@ -78,7 +74,8 @@ const mapStateToProps = state => ({
   nameinuse: state.createTeam.nameinuse,
   dontmatchpassword: state.createTeam.dontmatchpassword,
   passwordlengtherror: state.createTeam.passwordlengtherror,
-  namelengtherror: state.createTeam.namelengtherror
+  namelengtherror: state.createTeam.namelengtherror,
+  limitteamserror: state.createTeam.limitteamserror
 })
 
 const mapDispatchToProps = dispatch => ({

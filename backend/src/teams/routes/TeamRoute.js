@@ -1,9 +1,14 @@
 const express = require('express')
 const Team = require('../models/Team')
+const User = require('../../auth/models/User')
 const Joi = require('joi')
+const uuidv4 = require('uuid/v4')
 const router = express.Router()
 
 router.post('/team/new', async (req, res) => {
+	if(!req.user) return res.status(401).send('Não autorizado')
+	const ifAlreadyHaveTeam = await User.findById(req.user)
+	if(ifAlreadyHaveTeam.team !== 'none') return res.status(400).send('each player could have only one team')
 	const ifExist = await Team.findOne({name: req.body.name})
 	if(ifExist) return res.status(400).send('team name already in use')
 	const schemaValidator = {
@@ -15,19 +20,20 @@ router.post('/team/new', async (req, res) => {
 	const result = Joi.validate(req.body, schemaValidator)
 	if(result.error) res.status(400).send(result.error.details[0].message)
 	if(req.user) {
-		let avatar = 'none'
-		if (req.body.avatar) avatar = req.body.avatar
 		Team({
+			_id: uuidv4(),
 			name: req.body.name,
 			owner: req.user,
-			avatar: avatar,
+			avatar: 'none',
 			captain: req.user,
 			password: req.body.password
-		}).save().then(newTeam => res.send(newTeam)).catch( err => res.status(400).send(err))
+		}).save()
+			.then((newTeam) => {
+				User.findByIdAndUpdate(newTeam.owner, {team: newTeam._id}).then( user => res.send(user) )
+			})
+			.catch( err => res.status(400).send(err))
 		
-	} else {
-		res.status(401).send('Não autorizado')
-	}
+	} 
 })
 
 router.get('/team/:id', async (req, res) => {

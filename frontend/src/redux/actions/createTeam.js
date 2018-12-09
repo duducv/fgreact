@@ -30,6 +30,10 @@ export const nameLengthError = () => ({
   type: 'NAME_LENGTH_ERROR'
 })
 
+export const exceedsLimitTeams = () => ({
+  type: 'EXCEEDS_LIMIT_TEAMS'
+})
+
 export const changeName = (payload) => {
   return async dispatch => {
     try {
@@ -52,6 +56,7 @@ export const createNewTeam = (payload) => {
       if (err.response.data === 'team name already in use') dispatch(nameInUse())
       if (err.response.data === 'password do not match') dispatch(passwordDontMatch())
       if (err.response.data === '"password" is not allowed to be empty' || err.response.data === '"password" length must be at least 6 characters long') dispatch(passwordLengthError())
+      if (err.response.data === 'each player could have only one team') dispatch(exceedsLimitTeams())
       console.log(err.response.data)
     }
   }

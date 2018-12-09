@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   nameinuse: false,
   namelengtherror: false,
   dontmatchpassword: false,
-  passwordlengtherror: false
+  passwordlengtherror: false,
+  limitteamserror: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -29,6 +30,8 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {dontmatchpassword: true})
     case 'PASSWORD_LENGTH_ERROR':
       return UpdateObject(state, {passwordlengtherror: true})
+    case 'EXCEEDS_LIMIT_TEAMS':
+      return UpdateObject(state, {limitteamserror: true})
     default: return state
   }
 }

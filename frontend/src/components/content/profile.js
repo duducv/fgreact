@@ -21,13 +21,13 @@ class Profile extends Component {
         <div className='wrapper bg-secondary'>
           <div className='container-fluid bg-white'>
             <div className='row bg-primary'>
-              <div className='col-12 d-flex bg-primary mb-1 rounded align-items-center justify-content-center' style={{height: 200}}>
+              <div className='col-12 d-flex bg-primary-shadow mb-1 rounded align-items-center justify-content-center' style={{height: 200}}>
                 <h1 className='text-white'> CAPA </h1>
               </div>
             </div>
           </div>
-          <div className='container mt-4' style={{height: '80vh'}}>
-            <div className='row '>
+          <div className='container mt-4'>
+            <div className='row' style={{height: '80vh'}}>
               <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start p-0'>
                 <div className='card bg-opacity border-opacity text-dark'>
                   <div className='card bg-opacity border-opacity d-flex align-items-center justify-content-center'>
@@ -41,7 +41,7 @@ class Profile extends Component {
                     <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
-                    <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE<small>(s)</small></li>
+                    <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE</li>
                     <li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
