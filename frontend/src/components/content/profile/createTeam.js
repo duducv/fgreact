@@ -53,12 +53,12 @@ class CreateTeam extends Component {
             </div>
           </div>
           <div className='form-group'>
-            { this.props.password.length < 6 ? (<small id='emailHelp' className='form-text text-warning mb-2'>mínimo de 06 caracteres</small>) : (null) }
+            { this.props.password.length < 6 ? (<small id='passwordlengthwarning' className='form-text text-warning mb-2'>Mínimo 6 caracteres</small>) : (null) }
+            { this.props.passwordlengtherror ? (<small id='passwordlengtherror' className='form-text text-danger mb-2'>Mínimo 6 e Máximo 50 caracteres.</small>) : (null) }
             <input type='password' className='form-control text-center' id='InputPassword' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
           </div>
           <div className='form-group'>
             { this.props.dontmatchpassword ? (<small id='emailHelp' className='form-text text-danger mb-2'>Os password's não são iguais.</small>) : (null) }
-            { this.props.passwordlengtherror ? (<small id='emailHelp' className='form-text text-danger mb-2'>Mínimo 6 e Máximo 50 caracteres.</small>) : (null) }
             <input type='password' className='form-control text-center' id='confirmPassword' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
           </div>
           <button type='button' className='btn btn-success' onClick={this.createNewTeam}>Criar</button>

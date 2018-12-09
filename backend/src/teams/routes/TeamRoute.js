@@ -5,8 +5,8 @@ const router = express.Router()
 router.post('/team/new', async (req, res) => {
 	const ifExist = await Team.findOne({name: req.body.name})
 	if(ifExist) return res.status(400).send('team name already in use')
-	if(req.body.password !== req.body.confirmpassword) return res.status(400).send('password do not match')
-	if(req.body.password < 2 || req.body.password > 50) return res.status(400).send('password length error')
+	if(req.body.password !== req.body.confirmpassword) return  res.status(400).send('password do not match')
+	if(req.body.password < 6 || req.body.password > 50) return res.status(400).send('password length error')
 	if(req.user) {
 		let avatar = 'none'
 		if (req.body.avatar) avatar = req.body.avatar

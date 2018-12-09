@@ -45,8 +45,8 @@ export const createNewTeam = (payload) => {
       console.log(result)
     } catch (err) {
       if (err.response.data === 'team name already in use') dispatch(nameInUse())
-      else if (err.response.data === 'password do not match') dispatch(passwordDontMatch())
-      else if (err.response.data === 'password length error') dispatch(passwordLengthError())
+      if (err.response.data === 'password do not match') dispatch(passwordDontMatch())
+      if (err.response.data === 'password length error') dispatch(passwordLengthError())
       console.log(err.response.data)
     }
   }
