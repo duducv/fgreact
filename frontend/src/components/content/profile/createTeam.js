@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { changeName, changePassword, passwordConfirmation, createNewTeam } from '../../../redux/actions/createTeam'
+import { createTeam } from '../../../redux/actions/profileRoutes'
 
 const imageUpload = require('../../../../public/assets/images/image_upload.svg')
 
@@ -58,7 +59,8 @@ class CreateTeam extends Component {
             { this.props.dontmatchpassword ? (<small id='emailHelp' className='form-text text-danger mb-2'>Os password's não são iguais.</small>) : (null) }
             <input type='password' className='form-control text-center' id='confirmPassword' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
           </div>
-          <button type='button' className='btn btn-success' onClick={this.createNewTeam}>Criar</button>
+          <button type='button' className='btn btn-success mb-2' onClick={this.createNewTeam}>Criar</button>
+          <button type='button' className='btn btn-button' onClick={this.props.indexComponent}>Voltar</button>
           {this.props.spinner ? (<div className='loader-white ml-auto mr-auto mt-2' style={{height: '10em', width: '10em'}} />) : (null)}
         </form>
           </>
@@ -82,7 +84,8 @@ const mapDispatchToProps = dispatch => ({
   changeName: (payload) => dispatch(changeName(payload)),
   changePassword: (payload) => dispatch(changePassword(payload)),
   passwordConfirmation: (payload) => dispatch(passwordConfirmation(payload)),
-  createNewTeam: (payload) => dispatch(createNewTeam(payload))
+  createNewTeam: (payload) => dispatch(createNewTeam(payload)),
+  indexComponent: (payload) => dispatch(createTeam('index'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTeam)

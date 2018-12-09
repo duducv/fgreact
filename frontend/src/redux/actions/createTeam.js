@@ -59,7 +59,7 @@ export const createNewTeam = (payload) => {
     try {
       await dispatch(spinnerOn())
       let result = await axios.post('/team/new', payload)
-      console.log(result)
+      if (result) window.location.reload(true)
     } catch (err) {
       if (err.response.data === '"name" length must be at least 2 characters long' || err.response.data === '"name" is not allowed to be empty') {
         dispatch(spinnerOff())
