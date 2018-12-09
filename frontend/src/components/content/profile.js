@@ -18,7 +18,7 @@ class Profile extends Component {
   render () {
     if (this.props.auth) {
       return (
-        <div className='wrapper bg-secondary' style={{height: '100vh'}}>
+        <div className='wrapper bg-secondary'>
           <div className='container-fluid bg-white'>
             <div className='row bg-primary'>
               <div className='col-12 d-flex bg-primary mb-1 rounded align-items-center justify-content-center' style={{height: 200}}>
@@ -26,7 +26,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <div className='container mt-4'>
+          <div className='container mt-4' style={{height: '80vh'}}>
             <div className='row '>
               <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start p-0'>
                 <div className='card bg-opacity border-opacity text-dark'>
