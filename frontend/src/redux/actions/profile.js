@@ -5,13 +5,9 @@ export const profileRoutes = (payload) => ({
   payload
 })
 
-export const fetchUserData = (payload) => {
-  return async dispatch => {
-    try {
-      let result = await axios.get(`/team/${payload}`)
-      console.log(result)
-    } catch (err) {
-
-    }
+export const fetchUserTeam = (payload) => {
+  return dispatch => {
+    axios.get(`/team/${payload}`).then(result => console.log(result)).catch(err => console.log(err))
   }
 }
+

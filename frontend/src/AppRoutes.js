@@ -11,10 +11,12 @@ import Profile from './components/content/profile'
 import MapVetos from './components/content/MapVetos'
 import Register from './components/content/register'
 import { logOn } from './redux/actions/login'
+import { fetchUserTeam } from './redux/actions/profile'
 
 class AppRoutes extends Component {
   componentDidMount = () => {
     this.props.logOn()
+    this.props.fetchUserTeam(this.props.team)
   }
   render () {
     return (
@@ -37,12 +39,14 @@ class AppRoutes extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth.auth
+    auth: state.auth.auth,
+    team: state.profileLocation.team
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  logOn: () => dispatch(logOn())
+  logOn: () => dispatch(logOn()),
+  fetchUserTeam: (payload) => dispatch(fetchUserTeam(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRoutes)

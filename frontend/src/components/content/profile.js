@@ -2,19 +2,15 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import ProfileComponent from './profile/profileComponent'
-import { profileRoutes, fetchUserData } from '../../redux/actions/profile'
+import { profileRoutes } from '../../redux/actions/profile'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
 class Profile extends Component {
-  componentDidMount = () => {
-    this.props.fetchUserData(this.props.team)
-  }
   showCreateTeam = () => {
     this.props.createTeamComponent()
   }
   render () {
-    console.log(this.props.team)
     if (this.props.auth) {
       return (
         <div className='wrapper bg-secondary'>
@@ -86,8 +82,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTeamComponent: (payload) => dispatch(profileRoutes('createTeam')),
-  fetchUserData: (payload) => dispatch(fetchUserData(payload))
+  createTeamComponent: (payload) => dispatch(profileRoutes('createTeam'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
