@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { changeName, changePassword, passwordConfirmation, createNewTeam } from '../../../redux/actions/createTeam'
-import { createTeam } from '../../../redux/actions/profileRoutes'
+import { profileRoutes } from '../../../redux/actions/profile'
 
 const imageUpload = require('../../../../public/assets/images/image_upload.svg')
 
@@ -85,7 +85,7 @@ const mapDispatchToProps = dispatch => ({
   changePassword: (payload) => dispatch(changePassword(payload)),
   passwordConfirmation: (payload) => dispatch(passwordConfirmation(payload)),
   createNewTeam: (payload) => dispatch(createNewTeam(payload)),
-  indexComponent: (payload) => dispatch(createTeam('index'))
+  indexComponent: (payload) => dispatch(profileRoutes('index'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTeam)

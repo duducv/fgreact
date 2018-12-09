@@ -36,12 +36,15 @@ router.post('/team/new', async (req, res) => {
 	} 
 })
 
-router.get('/team/:id', async (req, res) => {
+router.get('/team/validation/:name', async (req, res) => {
 	if(!req.user) return res.status(401).send('unauthorized')
-	let result = await Team.findOne({name: req.params.id})
+	let result = await Team.findOne({name: req.params.name})
 	if(result) return res.status(400).send('already in database')
 	return res.send('not in database')
 })
 
+router.get('/team/:id', (req, res) => {
+	Team.findById(req.params.id).then(result => res.send(result))
+})
 
 module.exports = router

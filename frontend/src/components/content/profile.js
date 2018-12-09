@@ -2,16 +2,19 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import ProfileComponent from './profile/profileComponent'
-import { createTeam } from '../../redux/actions/profileRoutes'
+import { profileRoutes, fetchUserData } from '../../redux/actions/profile'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
 class Profile extends Component {
-  
+  componentDidMount = () => {
+    this.props.fetchUserData(this.props.team)
+  }
   showCreateTeam = () => {
     this.props.createTeamComponent()
   }
   render () {
+    console.log(this.props.team)
     if (this.props.auth) {
       return (
         <div className='wrapper bg-secondary'>
@@ -38,7 +41,9 @@ class Profile extends Component {
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE</li>
-                    <li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>
+                    {this.props.team === 'none'
+                      ? (<li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>)
+                      : (<li className='list-group-item bg-white'>{this.props.team}</li>)}
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>AMIGO<small>(s)</small></li>
@@ -76,11 +81,13 @@ const mapStateToProps = state => ({
   nickname: state.user.data.nickname,
   avatar: state.user.data.avatarfull,
   profileurl: state.user.data.profileurl,
+  team: state.user.data.team,
   location: state.profileLocation.location
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTeamComponent: (payload) => dispatch(createTeam('createTeam'))
+  createTeamComponent: (payload) => dispatch(profileRoutes('createTeam')),
+  fetchUserData: (payload) => dispatch(fetchUserData(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

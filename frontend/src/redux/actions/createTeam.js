@@ -46,7 +46,7 @@ export const changeName = (payload) => {
   return async dispatch => {
     try {
       await dispatch({type: 'CHANGE_NAME', payload})
-      let result = await axios.get(`/team/${payload}`)
+      let result = await axios.get(`/team/validation/${payload}`)
       if (result.data) await dispatch(nameNotInUse())
     } catch (err) {
       if (err.response.data === 'already in database') dispatch(nameInUse())
