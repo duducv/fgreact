@@ -4,7 +4,10 @@ const INITIAL_STATE = {
   name: '',
   password: '',
   confirmpassword: '',
-  image: ''
+  image: '',
+  nameinuse: false,
+  dontmatchpassword: false,
+  passwordlengtherror: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,6 +18,14 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {password: action.payload})
     case 'CONFIRM_PASSWORD':
       return UpdateObject(state, {confirmpassword: action.payload})
+    case 'NAME_IN_USE':
+      return UpdateObject(state, {nameinuse: true})
+    case 'NAME_NOT_IN_USE':
+      return UpdateObject(state, {nameinuse: false})
+    case 'PASSWORD_DONT_MATCH':
+      return UpdateObject(state, {dontmatchpassword: true})
+    case 'PASSWORD_LENGTH_ERROR':
+      return UpdateObject(state, {passwordlengtherror: true})
     default: return state
   }
 }

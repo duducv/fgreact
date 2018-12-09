@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import axios from '../../../axios-public'
 
-import { changeName, changePassword, passwordConfirmation } from '../../../redux/actions/createTeam'
+import { changeName, changePassword, passwordConfirmation, createNewTeam } from '../../../redux/actions/createTeam'
 
 const checkStatus = require('../../../../public/assets/images/check.svg')
 const imageUpload = require('../../../../public/assets/images/image_upload.svg')
@@ -22,6 +23,15 @@ class CreateTeam extends Component {
     event.preventDefault()
     this.props.passwordConfirmation(event.target.value.trim())
   }
+
+  createNewTeam = () => {
+    const data = {
+      name: this.props.name,
+      password: this.props.password,
+      confirmpassword: this.props.confirmpassword
+    }
+    this.props.createNewTeam(data)
+  }
   render () {
     return (
       <>
@@ -31,16 +41,10 @@ class CreateTeam extends Component {
         </ol>
       </nav>
         <form className='d-flex flex-column mr-auto ml-auto'>
-          <div className='form-group d-flex'>
-            <ul className='nav'>
-              <li className='nav-item'>
-                <div>
-                  {this.props.name.length < 2 ? (<small id='emailHelp' className='form-text text-warning'>O nome da equipe deverá ter no mínimo 02 carácteres alfanuméricos</small>) : (null)}
-                  <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
-                </div>
-              </li>
-              <li className='nav-item ml-4 mt-4'><img src={checkStatus} style={{width: '1.5em'}}></img></li>
-            </ul>
+          <div className='form-group d-flex flex-column'>
+            <small id='emailHelp' className='form-text text-warning mb-2'>Mínimo 02 carácteres. Apenas alfanuméricos.</small>
+            { this.props.name.length > 2 && this.props.nameinuse ? (<small id='emailHelp' className='form-text text-danger mb-2'>Nome já está em uso.</small>) : (null) }
+            <input type='text' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Nome da equipe' onChange={this.onHandleName} />
           </div>
           <div className="input-group mb-3 d-flex">
             <div className="custom-file">
@@ -49,14 +53,15 @@ class CreateTeam extends Component {
             </div>
           </div>
           <div className='form-group'>
-            {this.props.password.length < 6 ? (<small id='emailHelp' className='form-text text-warning'>mínimo de 06 caracteres</small>) : (null)}
+            { this.props.password.length < 6 ? (<small id='emailHelp' className='form-text text-warning mb-2'>mínimo de 06 caracteres</small>) : (null) }
             <input type='password' className='form-control text-center' id='InputPassword' placeholder='Senha para acesso à equipe' onChange={this.onHandlePassword} />
           </div>
           <div className='form-group'>
-            {this.props.password !== this.props.confirmpassword ? (<small id='emailHelp' className='form-text text-warning'>O password deve ser igual</small>) : (null)}
+            { this.props.dontmatchpassword ? (<small id='emailHelp' className='form-text text-danger mb-2'>Os password's não são iguais.</small>) : (null) }
+            { this.props.passwordlengtherror ? (<small id='emailHelp' className='form-text text-danger mb-2'>Mínimo 6 e Máximo 50 caracteres.</small>) : (null) }
             <input type='password' className='form-control text-center' id='confirmPassword' placeholder='Confirme a senha ' onChange={this.onHandleConfirmPassword} />
           </div>
-          <button type='submit' className='btn btn-success'>Criar</button>
+          <button type='button' className='btn btn-success' onClick={this.createNewTeam}>Criar</button>
         </form>
           </>
     )
@@ -66,13 +71,17 @@ class CreateTeam extends Component {
 const mapStateToProps = state => ({
   name: state.createTeam.name,
   password: state.createTeam.password,
-  confirmpassword: state.createTeam.confirmpassword
+  confirmpassword: state.createTeam.confirmpassword,
+  nameinuse: state.createTeam.nameinuse,
+  dontmatchpassword: state.createTeam.dontmatchpassword,
+  passwordlengtherror: state.createTeam.passwordlengtherror
 })
 
 const mapDispatchToProps = dispatch => ({
   changeName: (payload) => dispatch(changeName(payload)),
   changePassword: (payload) => dispatch(changePassword(payload)),
-  passwordConfirmation: (payload) => dispatch(passwordConfirmation(payload))
+  passwordConfirmation: (payload) => dispatch(passwordConfirmation(payload)),
+  createNewTeam: (payload) => dispatch(createNewTeam(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTeam)

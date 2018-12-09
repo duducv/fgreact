@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	password: {
+		type: String,
+		required: true,
+		minlength: 6,
+		maxlength: 50
+	},
 	player1: String,
 	player2: String,
 	player3: String,
