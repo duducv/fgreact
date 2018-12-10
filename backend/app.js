@@ -8,7 +8,7 @@ const cors = require('cors')
 const authRoutes = require('./src/auth/routes/authRoutes')
 const teamRoutes = require('./src/teams/routes/TeamRoute')
 
-mongoose.connect('mongodb://localhost:27017/FortalGamers')
+mongoose.connect('mongodb://localhost:27017/fortalgamers')
 	.then(() => {
 		console.log('conectado ao banco de dados')
 	}).catch(err => console.log(err))
