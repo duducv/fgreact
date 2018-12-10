@@ -8,7 +8,6 @@ import Index from './components/content/index'
 import PageNotFound from './components/content/pagenotfound'
 import Profile from './components/content/profile'
 import MapVetos from './components/content/MapVetos'
-import Register from './components/content/register'
 import { logOn } from './redux/actions/login'
 
 class AppRoutes extends Component {
@@ -24,7 +23,6 @@ class AppRoutes extends Component {
             <Route path='/' component={Index} exact />
             <Route path='/profile' component={Profile} />
             <Route path='/vetos' component={MapVetos} />
-            <Route path='/registrar' component={Register} />
             <Route component={PageNotFound} />
           </Switch>
           <Footer />
