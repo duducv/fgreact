@@ -1,10 +1,9 @@
 import axios from 'axios'
+import { fetchUserTeam } from './profile'
 
 export const authSuccess = () => ({
   type: 'AUTH'
 })
-
-import { fetchUserTeam } from './profile'
 
 export const getTokenAndId = (tokenId, userId) => ({
   type: 'GET_TOKEN_AND_ID',
