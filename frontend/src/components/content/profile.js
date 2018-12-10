@@ -30,16 +30,16 @@ class Profile extends Component {
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
                     <h5 className='card-title'>{this.props.nickname}</h5>
-                    <p className='card-text'>CSGO player for @OWLNAGE.OG</p>
+                    <p className='card-text'>CSGO player for @{this.props.team.name}</p>
                   </div>
                   <ul className='list-group list-group-flush'>
                     <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
-                    <li className='list-group-item bg-white rounded-top d-flex'>EQUIPE</li>
-                    {this.props.team === 'none'
+                    
+                    {!this.props.team
                       ? (<li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>)
-                      : (<li className='list-group-item bg-white'>{this.props.team}</li>)}
+                      : (null)}
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
                     <li className='list-group-item bg-white rounded-top d-flex'>AMIGO<small>(s)</small></li>

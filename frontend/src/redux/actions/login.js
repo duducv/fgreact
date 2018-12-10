@@ -33,7 +33,6 @@ export const logOn = () => {
       console.log(response.data)
       if (!response.data.nickname) return
       await dispatch(getUserData(response.data))
-      if (response.data.team !== 'none') await dispatch(fetchUserTeam(response.data.team))
       await dispatch(authSuccess())
     } catch (err) {
       console.log(err)

@@ -2,13 +2,12 @@ const express = require('express')
 const Team = require('../models/Team')
 const User = require('../../auth/models/User')
 const Joi = require('joi')
-const uuidv4 = require('uuid/v4')
 const router = express.Router()
 
 router.post('/team/new', async (req, res) => {
 	if(!req.user) return res.status(401).send('Não autorizado')
 	const ifAlreadyHaveTeam = await User.findById(req.user)
-	if(ifAlreadyHaveTeam.team !== 'none') return res.status(400).send('each player could have only one team')
+	if(ifAlreadyHaveTeam.team) return res.status(400).send('each player could have only one team')
 	const ifExist = await Team.findOne({name: req.body.name})
 	if(ifExist) return res.status(400).send('team name already in use')
 	const schemaValidator = {
@@ -21,7 +20,6 @@ router.post('/team/new', async (req, res) => {
 	if(result.error) res.status(400).send(result.error.details[0].message)
 	if(req.user) {
 		Team({
-			_id: uuidv4(),
 			name: req.body.name,
 			owner: req.user,
 			avatar: 'none',

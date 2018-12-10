@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-	_id: {
-		type: String,
-		required: true
-	},
 	name: {
 		type: String,
 		unique: true,
@@ -13,8 +9,8 @@ const userSchema = new mongoose.Schema({
 		maxlength: 50
 	},
 	owner: {
-		type: String,
-		required: true
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'teams'
 	},
 	avatar: { 
 		type: String,

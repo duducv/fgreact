@@ -18,7 +18,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-	User.findById(req.user).then(result => res.send(result))
+	User.findById(req.user).populate('team').then(result => res.send(result))
 })
 
 module.exports = router

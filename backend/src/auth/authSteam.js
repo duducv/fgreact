@@ -19,18 +19,17 @@ module.exports = passport.use(new SteamStrategy({
 },
 function(identifier, profile, done) {
 	console.log(profile._json)
-	User.findOne({_id: profile._json.steamid}).then((currentUser) => {
+	User.findOne({steamid: profile._json.steamid}).then((currentUser) => {
 		if(currentUser){
 			console.log(`the user already logged in: ${currentUser}`)
 			done(null, currentUser)
 		} else {
 			User({
-				_id: profile._json.steamid,
+				steamid: profile._json.steamid,
 				realname: profile._json.realname,
 				nickname: profile._json.personaname,
 				profileurl: profile._json.profileurl,
 				avatarfull: profile._json.avatarfull,
-				team: 'none'
 			}).save().then((newUser) => {
 				done(null, newUser)
 			})
