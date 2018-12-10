@@ -4,6 +4,8 @@ export const authSuccess = () => ({
   type: 'AUTH'
 })
 
+import { fetchUserTeam } from './profile'
+
 export const getTokenAndId = (tokenId, userId) => ({
   type: 'GET_TOKEN_AND_ID',
   tokenId,
@@ -32,6 +34,7 @@ export const logOn = () => {
       console.log(response.data)
       if (!response.data.nickname) return
       await dispatch(getUserData(response.data))
+      if (response.data.team !== 'none') dispatch(fetchUserTeam(response.data.team))
       await dispatch(authSuccess())
     } catch (err) {
       console.log(err)

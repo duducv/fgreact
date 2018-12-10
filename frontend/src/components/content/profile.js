@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import ProfileComponent from './profile/profileComponent'
-import { profileRoutes } from '../../redux/actions/profile'
+import { profileRoutes, fetchUserTeam } from '../../redux/actions/profile'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
 
@@ -82,7 +82,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTeamComponent: (payload) => dispatch(profileRoutes('createTeam'))
+  createTeamComponent: (payload) => dispatch(profileRoutes('createTeam')),
+  fetchUserTeam: (payload) => dispatch(fetchUserTeam(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
