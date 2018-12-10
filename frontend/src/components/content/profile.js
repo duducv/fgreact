@@ -26,7 +26,7 @@ class Profile extends Component {
               <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start p-0'>
                 <div className='card bg-opacity border-opacity text-dark'>
                   <div className='card bg-opacity border-opacity d-flex align-items-center justify-content-center'>
-                    <img className='card-img-top rounded rounded-circle position-absolute' src={this.props.avatar} alt='Card image cap' style={{width: '10rem', top: -150}} />
+                    <img className='card-img-top rounded rounded-circle position-absolute img-thumbnail' src={this.props.avatar} alt='Card image cap' style={{width: '10rem', top: -150}} />
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
                     <h5 className='card-title'>{this.props.nickname}</h5>
@@ -36,7 +36,6 @@ class Profile extends Component {
                     <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                   </ul>
                   <ul className='list-group list-group-flush mt-2'>
-                    
                     {!this.props.team
                       ? (<li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>CRIAR EQUIPE +</button></li>)
                       : (null)}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => (
 
-  <div className='container-fluid bg-primary-shadow position-fixed' style={{left: 0, bottom: 0}}>
+  <div className='container-fluid bg-primary-shadow'>
     <div className='card bg-primary-shadow border-0'>
       <div className='card-body'>
         <blockquote className='blockquote mb-0'>
