@@ -15,13 +15,38 @@ export default class teamProfile extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col bg-primary-shadow d-flex align-items-start justify-content-center mt-4' style={{height: '60vh'}}>
+          <div className='col bg-primary-shadow align-items-start justify-content-center mt-4'>
             <ul className='nav justify-content-center'>
-              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
-              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
-              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
-              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
-              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
+              <li className='nav-item'>
+                <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+                  <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
+                  <p className='text-white pt-2 text-truncate ml-auto'>PARAGATIMIRUARU</p>
+                </div>
+              </li>
+              <li className='nav-item'>
+                <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+                  <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
+                  <p className='text-white pt-2 text-truncate ml-auto'>PARAGATIMIRUARU</p>
+                </div>
+              </li>
+              <li className='nav-item'>
+                <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+                  <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
+                  <p className='text-white pt-2 text-truncate ml-auto'>PARAGATIMIRUARU</p>
+                </div>
+              </li>
+              <li className='nav-item'>
+                <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+                  <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
+                  <p className='text-white pt-2 text-truncate ml-auto'>PARAGATIMIRUARU</p>
+                </div>
+              </li>
+              <li className='nav-item'>
+                <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+                  <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
+                  <p className='text-white pt-2 text-truncate ml-auto'>PARAGATIMIRUARU</p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
