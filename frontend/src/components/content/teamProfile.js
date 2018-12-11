@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class teamProfile extends Component {
+class TeamProfile extends Component {
   render () {
     console.log(this.props)
     return (
@@ -55,3 +55,5 @@ export default class teamProfile extends Component {
     )
   }
 }
+
+export default TeamProfile
