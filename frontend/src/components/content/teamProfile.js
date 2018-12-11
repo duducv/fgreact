@@ -16,12 +16,12 @@ export default class teamProfile extends Component {
         </div>
         <div className='row'>
           <div className='col bg-primary-shadow d-flex align-items-start justify-content-center mt-4' style={{height: '60vh'}}>
-            <ul className='nav d-flex justify-content-center'>
-              <li className='nav-item px-2'><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /></li>
-              <li className='nav-item px-2'><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /></li>
-              <li className='nav-item px-2'><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /></li>
-              <li className='nav-item px-2'><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /></li>
-              <li className='nav-item px-2'><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /></li>
+            <ul className='nav justify-content-center'>
+              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
+              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
+              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
+              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
+              <li className='nav-item'><div className='card bg-primary py-3 px-2 align-items-center' style={{width: '15em'}}><img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' /><p className='text-white pt-2'>Headz</p></div></li>
             </ul>
           </div>
         </div>
