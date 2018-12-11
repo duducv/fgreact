@@ -11,6 +11,8 @@ class Profile extends Component {
     this.props.createTeamComponent()
   }
   render () {
+    let hasTeam = false
+    if (this.props.team) hasTeam = true
     if (this.props.auth) {
       return (
         <div className='wrapper bg-secondary'>
@@ -30,7 +32,9 @@ class Profile extends Component {
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
                     <h5 className='card-title'>{this.props.nickname}</h5>
-                    <p className='card-text'>CSGO player for @{this.props.team.name}</p>
+                    { hasTeam ? (<p className='card-text'>CSGO player for @{this.props.team.name}</p>)
+                      : (<p className='card-text'>CSGO player</p>)}
+
                   </div>
                   <ul className='list-group list-group-flush'>
                     <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
