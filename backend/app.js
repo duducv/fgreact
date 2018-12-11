@@ -17,7 +17,7 @@ const app = express()
 app.use(cookieSession({
 	maxAge: 24 * 60 * 60 * 10000,
 	keys: ['fortalgamers'],
-}))
+})) 
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())

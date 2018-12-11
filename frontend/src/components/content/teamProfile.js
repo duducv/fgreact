@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 class TeamProfile extends Component {
+  componentDidMount () {
+    const { id } = this.props.match.params
+    console.log(id)
+  }
   render () {
-    console.log(this.props)
     return (
       <div className='container-fluid bg-primary-shadow mt-4'>
         <div className='row'>

@@ -41,8 +41,8 @@ router.get('/team/validation/:name', async (req, res) => {
 	return res.send('not in database')
 })
 
-router.get('/team/:id', (req, res) => {
-	Team.findById(req.params.id).then(result => res.send(result))
+router.get('/team/request/:id', (req, res) => {
+	Team.findById(req.params.id).then(result => res.send(result)).catch(() => res.send('Não localizado no banco de dados'))
 })
 
 module.exports = router
