@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import ProfileComponent from './profile/profileComponent'
 import { profileRoutes, fetchUserTeam } from '../../redux/actions/profile'
@@ -32,7 +33,7 @@ class Profile extends Component {
                   </div>
                   <div className='card-body bg-white rounded-top p-4 mt-3'>
                     <h5 className='card-title'>{this.props.nickname}</h5>
-                    { hasTeam ? (<p className='card-text'>CSGO player for @{this.props.team.name}</p>)
+                    { hasTeam ? (<Link to={`/team/${this.props.team._id}`} style={{textDecoration: 'none'}}><p className='card-text'>CSGO player for <span className='text-button'>@{this.props.team.name}</span></p></Link>)
                       : (<p className='card-text'>CSGO player</p>)}
 
                   </div>
