@@ -30,7 +30,7 @@
     content: '';
   }
   .loader:after {
-    background: #1E2032;
+    background: #100F20;
     width: 75%;
     height: 75%;
     border-radius: 50%;

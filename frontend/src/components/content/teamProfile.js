@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import axios from '../../axios-public'
+
+import { getTeamData } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
   componentDidMount () {
     const { id } = this.props.match.params
-    axios.get(`/team/request/${id}`).then(result => console.log(result)).catch(err => console.log(err.response.data))
+    this.props.getTeamData(id)
   }
   render () {
+    if (this.props.loading) return <div className='container-fluid bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '80vh'}}><div className='row'><div className='col'><div className='loader' style={{width: '20em', height: '20em'}} /></div></div></div>
     return (
       <div className='container-fluid bg-primary-shadow mt-4'>
         <div className='row'>
@@ -60,4 +64,12 @@ class TeamProfile extends Component {
   }
 }
 
-export default TeamProfile
+const mapStateToProps = state => ({
+  loading: state.team.loading
+})
+
+const mapDispatchToProps = dispatch => ({
+  getTeamData: (payload) => dispatch(getTeamData(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamProfile)

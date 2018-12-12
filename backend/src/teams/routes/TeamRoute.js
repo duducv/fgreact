@@ -42,7 +42,7 @@ router.get('/team/validation/:name', async (req, res) => {
 })
 
 router.get('/team/request/:id', (req, res) => {
-	Team.findById(req.params.id).then(result => res.send(result)).catch(() => res.send('team not found in database'))
+	Team.findById(req.params.id).select('-password').then(result => res.send(result)).catch(() => res.status(400).send('team not found in database'))
 })
 
 module.exports = router
