@@ -2,7 +2,8 @@ import { UpdateObject } from './utility'
 
 const INITIAL_STATE = {
   data: '',
-  loading: true
+  loading: true,
+  notfound: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,8 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {data: action.payload})
     case 'LOADING_OFF':
       return UpdateObject(state, {loading: false})
+    case 'NOT_FOUND':
+      return UpdateObject(state, {notfound: true})
     default: return state
   }
 }

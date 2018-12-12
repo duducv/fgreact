@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
 import { getTeamData } from '../../redux/actions/team'
@@ -11,6 +12,7 @@ class TeamProfile extends Component {
   }
   render () {
     if (this.props.loading) return <Loading />
+    if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.name) {
       return (
         <div className='container-fluid bg-primary-shadow mt-4'>
@@ -68,7 +70,8 @@ class TeamProfile extends Component {
 
 const mapStateToProps = state => ({
   loading: state.team.loading,
-  name: state.team.data.name
+  name: state.team.data.name,
+  notfound: state.team.notfound
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -8,6 +8,10 @@ export const loadingOff = () => ({
   type: 'LOADING_OFF'
 })
 
+export const notFound = () => ({
+  type: 'NOT_FOUND'
+})
+
 export const getTeamData = (payload) => {
   return async dispatch => {
     try {
@@ -16,6 +20,10 @@ export const getTeamData = (payload) => {
       await dispatch(loadingOff())
     } catch (err) {
       console.log(err.response.data)
+      if (err.response.data === 'team not found in database') {
+        dispatch(notFound())
+        dispatch(loadingOff())
+      }
     }
   }
 }
