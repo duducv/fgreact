@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 const imgSteamIcon = require('../../../public/assets/images/logo-steam-white.svg')
 
 const IfLogged = (props) => {
-  console.log('o estado é ' + props.avatar)
   if (props.auth === false) {
     return (
       <ul className='nav align-items-center'>
