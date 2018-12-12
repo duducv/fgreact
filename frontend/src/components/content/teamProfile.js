@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from '../../axios-public'
 
 import Loading from './teamProfile/loading'
 import { getTeamData } from '../../redux/actions/team'
@@ -11,7 +10,6 @@ class TeamProfile extends Component {
     this.props.getTeamData(id)
   }
   render () {
-    console.log(this.props.data)
     if (this.props.loading) return <Loading />
     if (this.props.name) {
       return (
