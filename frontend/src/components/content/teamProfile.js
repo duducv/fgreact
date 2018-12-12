@@ -14,7 +14,17 @@ class TeamProfile extends Component {
     console.log(this.props.data)
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
-    if (this.props.name) {
+    if (this.props.teamname) {
+      const players = this.props.players.map((player) => {
+        return (
+          <li className='nav-item' key={player._id}>
+            <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
+              <img className='rounded-circle img-thumbnail' src={player.avatarfull} />
+              <p className='text-white pt-2 text-truncate ml-auto' >{player.nickname}</p>
+            </div>
+          </li>
+        )
+      })
       return (
         <div className='container-fluid bg-primary-shadow mt-4'>
           <div className='row'>
@@ -24,42 +34,13 @@ class TeamProfile extends Component {
           </div>
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '50px'}}>
-              <h2 className='text-white'>{this.props.name}</h2>
+              <h2 className='text-white'>{this.props.teamname}</h2>
             </div>
           </div>
           <div className='row'>
             <div className='col bg-primary-shadow align-items-start justify-content-center mt-4'>
               <ul className='nav justify-content-center'>
-                <li className='nav-item'>
-                  <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
-                    <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate ml-auto' style={{maxWidth: '100px'}}>{this.props.players[0].nickname}</p>
-                  </div>
-                </li>
-                <li className='nav-item'>
-                  <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
-                    <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate ml-auto' style={{maxWidth: '100px'}}>lorem ipsum amet</p>
-                  </div>
-                </li>
-                <li className='nav-item'>
-                  <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
-                    <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate ml-auto' style={{maxWidth: '100px'}}>lorem ipsum amet</p>
-                  </div>
-                </li>
-                <li className='nav-item'>
-                  <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
-                    <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate mr-auto ml-auto' style={{maxWidth: '100px'}}>lorem ipsum amet</p>
-                  </div>
-                </li>
-                <li className='nav-item'>
-                  <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
-                    <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate ml-auto mr-auto' style={{maxWidth: '100px'}}>lorem ipsum amet</p>
-                  </div>
-                </li>
+                {players}
               </ul>
             </div>
           </div>
@@ -71,7 +52,7 @@ class TeamProfile extends Component {
 
 const mapStateToProps = state => ({
   loading: state.team.loading,
-  name: state.team.data.name,
+  teamname: state.team.data.name,
   players: state.team.data.players,
   notfound: state.team.notfound,
   data: state.team.data
