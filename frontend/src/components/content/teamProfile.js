@@ -11,6 +11,7 @@ class TeamProfile extends Component {
     this.props.getTeamData(id)
   }
   render () {
+    console.log(this.props.data)
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.name) {
@@ -32,7 +33,7 @@ class TeamProfile extends Component {
                 <li className='nav-item'>
                   <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '150px'}}>
                     <img className='rounded-circle img-thumbnail' src='https://via.placeholder.com/100' />
-                    <p className='text-white pt-2 text-truncate ml-auto' style={{maxWidth: '100px'}}>lorem ipsum amet</p>
+                    <p className='text-white pt-2 text-truncate ml-auto' style={{maxWidth: '100px'}}>{this.props.players[0].nickname}</p>
                   </div>
                 </li>
                 <li className='nav-item'>
@@ -71,7 +72,9 @@ class TeamProfile extends Component {
 const mapStateToProps = state => ({
   loading: state.team.loading,
   name: state.team.data.name,
-  notfound: state.team.notfound
+  players: state.team.data.players,
+  notfound: state.team.notfound,
+  data: state.team.data
 })
 
 const mapDispatchToProps = dispatch => ({

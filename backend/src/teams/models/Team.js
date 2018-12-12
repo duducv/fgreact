@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
 	},
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'teams'
+		ref: 'users'
 	},
 	avatar: { 
 		type: String,
@@ -26,12 +26,10 @@ const userSchema = new mongoose.Schema({
 		minlength: 6,
 		maxlength: 50
 	},
-	player1: String,
-	player2: String,
-	player3: String,
-	player4: String,
-	player5: String,
-	player6: String,
+	players: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'users'
+	}],
 	coach: String
 })
   

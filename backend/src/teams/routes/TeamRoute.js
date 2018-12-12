@@ -24,7 +24,8 @@ router.post('/team/new', async (req, res) => {
 			owner: req.user,
 			avatar: 'none',
 			captain: req.user,
-			password: req.body.password
+			password: req.body.password,
+			players:[req.user]
 		}).save()
 			.then((newTeam) => {
 				User.findByIdAndUpdate(newTeam.owner, {team: newTeam._id}).then( user => res.send(user) )
@@ -42,7 +43,7 @@ router.get('/team/validation/:name', async (req, res) => {
 })
 
 router.get('/team/request/:id', (req, res) => {
-	Team.findById(req.params.id).select('-password').then(result => res.send(result)).catch(() => res.status(400).send('team not found in database'))
+	Team.findById(req.params.id).select('-password').populate('players').then(result => res.send(result)).catch(() => res.status(400).send('team not found in database'))
 })
 
 module.exports = router
