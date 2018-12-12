@@ -47,9 +47,13 @@ router.get('/team/request/:id', (req, res) => {
 })
 
 router.put('/team/join', async (req, res) => {
-	if (!req.user) return res.status(401).send('Unauthorized')
-	let user = await User.findById(req.body.userId)
-	await Team.findByIdAndUpdate(req.body.teamId, {$push: {players: user._id }})
+	try {	if (!req.user) return res.status(401).send('Unauthorized')
+		let user = await User.findById(req.user)
+		await Team.findByIdAndUpdate(req.body.teamId, {$push: { players: user._id }})
+	} catch(err) {
+		res.sendStatus(400).send(err)
+	}
+
 })
 
 module.exports = router
