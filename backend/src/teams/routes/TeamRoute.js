@@ -5,7 +5,7 @@ const Joi = require('joi')
 const router = express.Router()
 
 router.post('/team/new', async (req, res) => {
-	if(!req.user) return res.status(401).send('Não autorizado')
+	if(!req.user) return res.status(401).send('Unauthorized')
 	const ifAlreadyHaveTeam = await User.findById(req.user)
 	if(ifAlreadyHaveTeam.team) return res.status(400).send('each player could have only one team')
 	const ifExist = await Team.findOne({name: req.body.name})
@@ -36,7 +36,7 @@ router.post('/team/new', async (req, res) => {
 })
 
 router.get('/team/validation/:name', async (req, res) => {
-	if(!req.user) return res.status(401).send('unauthorized')
+	if(!req.user) return res.status(401).send('Unauthorized')
 	let result = await Team.findOne({name: req.params.name})
 	if(result) return res.status(400).send('already in database')
 	return res.send('not in database')
@@ -44,6 +44,12 @@ router.get('/team/validation/:name', async (req, res) => {
 
 router.get('/team/request/:id', (req, res) => {
 	Team.findById(req.params.id).select('-password').populate('players').then(result => res.send(result)).catch(() => res.status(400).send('team not found in database'))
+})
+
+router.put('/team/join', async (req, res) => {
+	if (!req.user) return res.status(401).send('Unauthorized')
+	let user = await User.findById(req.body.userId)
+	await Team.findByIdAndUpdate(req.body.teamId, {$push: {players: user._id }})
 })
 
 module.exports = router
