@@ -26,7 +26,7 @@ class TeamProfile extends Component {
         )
       })
       return (
-        <div className='container-fluid bg-primary-shadow mt-4'>
+        <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='rounded-circle img-fluid img-thumbnail ' src='https://via.placeholder.com/150' />

@@ -26,7 +26,7 @@ class Profile extends Component {
           </div>
           <div className='container mt-4'>
             <div className='row' style={{height: '80vh'}}>
-              <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start p-0'>
+              <div className='col-md-4 col-lg-5 col-xl-2 d-flex align-items-start justify-content-center p-0'>
                 <div className='card bg-opacity border-opacity text-dark'>
                   <div className='card bg-opacity border-opacity d-flex align-items-center justify-content-center'>
                     <img className='card-img-top rounded rounded-circle position-absolute img-thumbnail' src={this.props.avatar} alt='Card image cap' style={{width: '10rem', top: -150}} />
@@ -35,7 +35,6 @@ class Profile extends Component {
                     <h5 className='card-title'>{this.props.nickname}</h5>
                     { hasTeam ? (<Link to={`/team/${this.props.team._id}`} style={{textDecoration: 'none'}}><p className='card-text'>CSGO player for <span className='text-button'>@{this.props.team.name}</span></p></Link>)
                       : (<p className='card-text'>CSGO player</p>)}
-
                   </div>
                   <ul className='list-group list-group-flush'>
                     <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
@@ -51,7 +50,7 @@ class Profile extends Component {
                   </ul>
                 </div>
               </div>
-              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex p-1 mt-3'>
+              <div className='col-12 col-sm-12 col-md-8 col-lg-7 col-xl-10 d-flex p-1 mt-3 d-flex justify-content-center'>
                 <div className='card text-center border-white text-darkbg-white w-100'>
                   <ProfileComponent toShow={this.props.location} />
                 </div>
