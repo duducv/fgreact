@@ -47,11 +47,16 @@ router.get('/team/request/:id', (req, res) => {
 })
 
 router.put('/team/join', async (req, res) => {
-	try {	if (!req.user) return res.status(401).send('Unauthorized')
+	try {	
+		if (!req.user) return res.status(401).send('Unauthorized')
 		let user = await User.findById(req.user)
-		await Team.findByIdAndUpdate(req.body.teamId, {$push: { players: user._id }})
+		let team = await Team.findById(req.body.teamId)
+		if (team.password !== req.body.teamPassword) return res.status(400).send('Invalid team password')
+		let result = await Team.findByIdAndUpdate(req.body.teamId, {$addToSet: { players: [user._id] }})
+		let updateUserTeam = await User.findByIdAndUpdate(user._id, {team: team._id})
+		if (result && updateUserTeam) res.send('player added successfully')
 	} catch(err) {
-		res.sendStatus(400).send(err)
+		res.status(400).send(err)
 	}
 
 })

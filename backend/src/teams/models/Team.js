@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
 	},
 	players: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'users'
+		unique:true,
+		ref: 'users',
 	}],
 	coach: String
 })
