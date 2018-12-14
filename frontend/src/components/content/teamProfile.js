@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
 import Player from './teamProfile/player'
+import LoginModal from './teamProfile/loginModal'
 import { getTeamData, enterTeam } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
@@ -24,14 +25,15 @@ class TeamProfile extends Component {
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.teamname) {
       const players = this.props.players.map((player) => {
-        return (<Player key={player._id} avatarfull={player.avatarfull} nickname={this.props.nickname} />)
+        return (<Player key={player._id} avatarfull={player.avatarfull} nickname={player.nickname} />)
       })
       return (
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='rounded-circle img-fluid img-thumbnail' src='https://via.placeholder.com/100' />
-              <button className='btn btn-success ml-3' onClick={this.enterTeam}>Entrar</button>
+              <button className='btn btn-success ml-3' data-toggle="modal" data-target="#exampleModal">Entrar</button>
+              <LoginModal />
             </div>
           </div>
           <div className='row'>
