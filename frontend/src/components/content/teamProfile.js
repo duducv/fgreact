@@ -5,9 +5,19 @@ import { Redirect } from 'react-router-dom'
 import Loading from './teamProfile/loading'
 import Player from './teamProfile/player'
 import LoginModal from './teamProfile/loginModal'
-import { getTeamData, enterTeam } from '../../redux/actions/team'
+import { getTeamData, enterTeam, sendPasswordInput } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
+  state = {
+    refresh: false
+  }
+  shouldComponentUpdate () {
+    if (this.state.refresh === false) {
+      return true
+    } else {
+      return false
+    }
+  }
   componentDidMount () {
     const { id } = this.props.match.params
     this.props.getTeamData(id)
@@ -15,11 +25,15 @@ class TeamProfile extends Component {
   enterTeam = () => {
     const data = {
       teamId: this.props.teamid,
-      teamPassword: '130190'
+      teamPassword: this.props.passwordinput
     }
     this.props.enterTeam(data)
   }
+  closeModalAndRefreshComponent = (payload) => {
+    this.setState({refresh: payload})
+  }
   render () {
+    console.log(this.state.refresh)
     console.log(this.props.data)
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
@@ -33,7 +47,13 @@ class TeamProfile extends Component {
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='rounded-circle img-fluid img-thumbnail' src='https://via.placeholder.com/100' />
               <button className='btn btn-success ml-3' data-toggle="modal" data-target="#exampleModal">Entrar</button>
-              <LoginModal />
+              <LoginModal
+                enterTeam={this.enterTeam}
+                passwordInput={(data) => this.props.sendPasswordInput(data)}
+                passwordFail={this.props.passwordfail}
+                passwordSuccess={this.props.passwordsuccess}
+                closeModalAndRefreshComponent={this.closeModalAndRefreshComponent}
+              />
             </div>
           </div>
           <div className='row'>
@@ -60,12 +80,16 @@ const mapStateToProps = state => ({
   teamid: state.team.data._id,
   players: state.team.data.players,
   notfound: state.team.notfound,
+  passwordinput: state.team.passwordInput,
+  passwordfail: state.team.passwordFail,
+  passwordsuccess: state.team.passwordSuccess,
   data: state.team.data
 })
 
 const mapDispatchToProps = dispatch => ({
   getTeamData: (payload) => dispatch(getTeamData(payload)),
-  enterTeam: (payload) => dispatch(enterTeam(payload))
+  enterTeam: (payload) => dispatch(enterTeam(payload)),
+  sendPasswordInput: (payload) => dispatch(sendPasswordInput(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamProfile)

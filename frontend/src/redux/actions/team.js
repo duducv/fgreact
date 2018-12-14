@@ -12,6 +12,19 @@ export const notFound = () => ({
   type: 'NOT_FOUND'
 })
 
+export const sendPasswordInput = (payload) => ({
+  type: 'PASSWORD_INPUT',
+  payload
+})
+
+export const teamPasswordSuccess = () => ({
+  type: 'TEAM_PASSWORD_SUCCESS'
+})
+
+export const teamPasswordFail = () => ({
+  type: 'TEAM_PASSWORD_FAIL'
+})
+
 export const getTeamData = (payload) => {
   return async dispatch => {
     try {
@@ -32,9 +45,11 @@ export const enterTeam = (payload) => {
   return async dispatch => {
     try {
       const result = await axios.put('/team/join', payload)
-      console.log(result)
+      if (result) await dispatch(teamPasswordSuccess())
+      window.location.reload(true)
     } catch (err) {
       console.log(err.response)
+      if (err.response.data === 'Invalid team password') return dispatch(teamPasswordFail())
     }
   }
 }
