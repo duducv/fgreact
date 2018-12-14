@@ -3,26 +3,20 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
-import { getTeamData } from '../../redux/actions/team'
+import { getTeamData, enterTeam } from '../../redux/actions/team'
 import axios from '../../axios-public'
 
 class TeamProfile extends Component {
-  state = {
-    teamId: null
-  }
   componentDidMount () {
     const { id } = this.props.match.params
     this.props.getTeamData(id)
-    this.setState({teamId: id})
   }
   enterTeam = () => {
-    const { teamId } = this.props.match.params
-    console.log(teamId)
     const data = {
-      teamId: this.state.teamId,
+      teamId: this.props.teamid,
       teamPassword: '130190'
     }
-    axios.put('/team/join', data).then((data) => console.log(data)).catch(err => console.log(err.message))
+    this.props.enterTeam(data)
   }
   render () {
     console.log(this.props.data)
@@ -68,13 +62,15 @@ class TeamProfile extends Component {
 const mapStateToProps = state => ({
   loading: state.team.loading,
   teamname: state.team.data.name,
+  teamid: state.team.data._id,
   players: state.team.data.players,
   notfound: state.team.notfound,
   data: state.team.data
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTeamData: (payload) => dispatch(getTeamData(payload))
+  getTeamData: (payload) => dispatch(getTeamData(payload)),
+  enterTeam: (payload) => dispatch(enterTeam(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamProfile)

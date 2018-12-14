@@ -27,3 +27,14 @@ export const getTeamData = (payload) => {
     }
   }
 }
+
+export const enterTeam = (payload) => {
+  return async dispatch => {
+    try {
+      const result = await axios.put('/team/join', payload)
+      console.log(result)
+    } catch (err) {
+      console.log(err.response)
+    }
+  }
+}
