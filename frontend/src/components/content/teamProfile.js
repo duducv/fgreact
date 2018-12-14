@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
+import Player from './teamProfile/player'
 import { getTeamData, enterTeam } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
@@ -23,14 +24,7 @@ class TeamProfile extends Component {
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.teamname) {
       const players = this.props.players.map((player) => {
-        return (
-          <li className='nav-item' key={player._id}>
-            <div className='py-3 px-2 align-items-center text-truncate' style={{maxWidth: '100px'}}>
-              <img className='rounded-circle img-thumbnail' src={player.avatarfull} />
-              <p className='text-white pt-2 text-truncate ml-auto' >{player.nickname}</p>
-            </div>
-          </li>
-        )
+        return (<Player key={player._id} avatarfull={player.avatarfull} nickname={this.props.nickname} />)
       })
       return (
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
