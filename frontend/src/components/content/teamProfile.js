@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
 import { getTeamData, enterTeam } from '../../redux/actions/team'
-import axios from '../../axios-public'
 
 class TeamProfile extends Component {
   componentDidMount () {
