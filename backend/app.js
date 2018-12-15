@@ -26,6 +26,6 @@ app.use('/api', authRoutes, teamRoutes)
 
 const port = 3000 || process.env.PORT 
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
 	console.log('running on 3000 port')
 })

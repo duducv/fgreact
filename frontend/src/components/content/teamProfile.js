@@ -11,17 +11,15 @@ class TeamProfile extends Component {
   state = {
     refresh: false
   }
-  shouldComponentUpdate () {
-    if (this.state.refresh === false) {
-      return true
-    } else {
-      return false
-    }
-  }
-  componentDidMount () {
-    const { id } = this.props.match.params
-    this.props.getTeamData(id)
-  }
+componentWillReceiveProps = (nextProps) => {
+
+  console.log(nextProps)
+ // this.setState({refresh: !this.state.refresh})
+}
+componentDidMount () {
+  const { id } = this.props.match.params
+  this.props.getTeamData(id)
+}
   enterTeam = () => {
     const data = {
       teamId: this.props.teamid,
