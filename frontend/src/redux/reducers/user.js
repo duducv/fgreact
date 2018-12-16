@@ -1,7 +1,11 @@
 import { UpdateObject } from './utility'
 
 const INITIAL_STATE = {
-  data: {}
+  data: {
+    team: {
+      _id: 'null'
+    }
+  }
 }
 
 const user = (state = INITIAL_STATE, action) => {

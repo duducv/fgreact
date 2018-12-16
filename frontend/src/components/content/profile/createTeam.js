@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { changeName, changePassword, passwordConfirmation, createNewTeam } from '../../../redux/actions/createTeam'
 import { profileRoutes } from '../../../redux/actions/profile'
 
-const imageUpload = require('../../../../public/assets/images/image_upload.svg')
-
 class CreateTeam extends Component {
   imgSelectedHandler = (event) => {
     console.log(Math.round(event.target.files[0].size / 1024))

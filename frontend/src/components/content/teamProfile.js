@@ -8,13 +8,9 @@ import LoginModal from './teamProfile/loginModal'
 import { getTeamData, enterTeam, sendPasswordInput } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
-  state = {
-    refresh: false
-  }
 componentWillReceiveProps = (nextProps) => {
-
   console.log(nextProps)
- // this.setState({refresh: !this.state.refresh})
+  // this.setState({refresh: !this.state.refresh})
 }
 componentDidMount () {
   const { id } = this.props.match.params
@@ -27,15 +23,11 @@ componentDidMount () {
     }
     this.props.enterTeam(data)
   }
-  closeModalAndRefreshComponent = (payload) => {
-    this.setState({refresh: payload})
-  }
   render () {
-    console.log(this.state.refresh)
-    console.log(this.props.data)
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.teamname) {
+      console.log(!this.props.playerdata.team)
       const players = this.props.players.map((player) => {
         return (<Player key={player._id} avatarfull={player.avatarfull} nickname={player.nickname} />)
       })
@@ -50,7 +42,6 @@ componentDidMount () {
                 passwordInput={(data) => this.props.sendPasswordInput(data)}
                 passwordFail={this.props.passwordfail}
                 passwordSuccess={this.props.passwordsuccess}
-                closeModalAndRefreshComponent={this.closeModalAndRefreshComponent}
               />
             </div>
           </div>
@@ -81,7 +72,7 @@ const mapStateToProps = state => ({
   passwordinput: state.team.passwordInput,
   passwordfail: state.team.passwordFail,
   passwordsuccess: state.team.passwordSuccess,
-  data: state.team.data
+  playerdata: state.user.data
 })
 
 const mapDispatchToProps = dispatch => ({
