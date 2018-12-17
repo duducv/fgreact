@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Loading from './teamProfile/loading'
 import Player from './teamProfile/player'
 import LoginModal from './teamProfile/loginModal'
+import LeaveModal from './teamProfile/leaveModal'
 import Button from './teamProfile/button'
 import { getTeamData, enterTeam, sendPasswordInput } from '../../redux/actions/team'
 
@@ -41,6 +42,7 @@ class TeamProfile extends Component {
                 passwordSuccess={this.props.passwordsuccess}
                 alreadyHasATeam={this.props.alreadyhasateam}
               />
+              <LeaveModal />
             </div>
           </div>
           <div className='row'>
