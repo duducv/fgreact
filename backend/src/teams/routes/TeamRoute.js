@@ -58,7 +58,17 @@ router.put('/team/join', async (req, res) => {
 	} catch(err) {
 		res.status(400).send(err)
 	}
+})
 
+router.put('/team/leave', async (req, res) => {
+	try {
+		if(!req.user) return res.status(401).send('Unauthorized')
+		let user = await User.update({_id: req.user}, {$unset: {team:''}})
+		let team = await Team.update({_id: req.body.teamId}, {$pull : {players: req.user }})
+		res.send([user, team])
+	} catch(err) {
+		console.log(err)
+	}
 })
 
 module.exports = router
