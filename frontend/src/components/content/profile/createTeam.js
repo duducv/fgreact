@@ -5,9 +5,6 @@ import { changeName, changePassword, passwordConfirmation, createNewTeam } from 
 import { profileRoutes } from '../../../redux/actions/profile'
 
 class CreateTeam extends Component {
-  imgSelectedHandler = (event) => {
-    console.log(Math.round(event.target.files[0].size / 1024))
-  }
   onHandleName = (event) => {
     event.preventDefault()
     this.props.changeName(event.target.value.trim())
