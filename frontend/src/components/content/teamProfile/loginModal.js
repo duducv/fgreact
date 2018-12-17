@@ -16,6 +16,7 @@ class LoginModal extends Component {
               <form>
                 <div className='form-group'>
                   {this.props.passwordFail ? (<small className='text-danger'>Senha incorreta...</small>) : (null)}
+                  {this.props.alreadyHasATeam ? (<small className='text-danger'>Você ja está inscrito em outro time. Saia antes de entrar em outro</small>) : (null)}
                   <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Senha' onChange={(event) => this.props.passwordInput(event.target.value.trim())} />
                 </div>
               </form>

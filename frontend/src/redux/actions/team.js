@@ -25,6 +25,10 @@ export const teamPasswordFail = () => ({
   type: 'TEAM_PASSWORD_FAIL'
 })
 
+export const alreadyHasATeam = () => ({
+  type: 'ALREADY_HAS_A_TEAM'
+})
+
 export const getTeamData = (payload) => {
   return async dispatch => {
     try {
@@ -48,8 +52,9 @@ export const enterTeam = (payload) => {
       if (result) await dispatch(teamPasswordSuccess())
       window.location.reload(true)
     } catch (err) {
-      console.log(err.response)
+      console.log(err.response.data.codeName)
       if (err.response.data === 'Invalid team password') return dispatch(teamPasswordFail())
+      if (err.response.data.codeName === 'DuplicateKey') dispatch(alreadyHasATeam())
     }
   }
 }

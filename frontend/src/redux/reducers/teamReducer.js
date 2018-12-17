@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   notfound: false,
   passwordInput: null,
   passwordSuccess: false,
-  passwordFail: false
+  passwordFail: false,
+  alreadyhasateam: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,6 +24,8 @@ export default (state = INITIAL_STATE, action) => {
       return UpdateObject(state, {passwordSuccess: true})
     case 'TEAM_PASSWORD_FAIL':
       return UpdateObject(state, {passwordFail: true})
+    case 'ALREADY_HAS_A_TEAM':
+      return UpdateObject(state, {alreadyhasateam: true})
     default: return state
   }
 }

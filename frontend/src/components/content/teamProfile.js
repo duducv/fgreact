@@ -5,17 +5,14 @@ import { Redirect } from 'react-router-dom'
 import Loading from './teamProfile/loading'
 import Player from './teamProfile/player'
 import LoginModal from './teamProfile/loginModal'
+import Button from './teamProfile/button'
 import { getTeamData, enterTeam, sendPasswordInput } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
-componentWillReceiveProps = (nextProps) => {
-  console.log(nextProps)
-  // this.setState({refresh: !this.state.refresh})
-}
-componentDidMount () {
-  const { id } = this.props.match.params
-  this.props.getTeamData(id)
-}
+  componentDidMount () {
+    const { id } = this.props.match.params
+    this.props.getTeamData(id)
+  }
   enterTeam = () => {
     const data = {
       teamId: this.props.teamid,
@@ -36,12 +33,13 @@ componentDidMount () {
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='rounded-circle img-fluid img-thumbnail' src='https://via.placeholder.com/100' />
-              <button className='btn btn-success ml-3' data-toggle="modal" data-target="#exampleModal">Entrar</button>
+              <Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />
               <LoginModal
                 enterTeam={this.enterTeam}
                 passwordInput={(data) => this.props.sendPasswordInput(data)}
                 passwordFail={this.props.passwordfail}
                 passwordSuccess={this.props.passwordsuccess}
+                alreadyHasATeam={this.props.alreadyhasateam}
               />
             </div>
           </div>
@@ -72,6 +70,7 @@ const mapStateToProps = state => ({
   passwordinput: state.team.passwordInput,
   passwordfail: state.team.passwordFail,
   passwordsuccess: state.team.passwordSuccess,
+  alreadyhasateam: state.team.alreadyhasateam,
   playerdata: state.user.data
 })
 
