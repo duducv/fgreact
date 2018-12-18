@@ -67,7 +67,7 @@ router.put('/team/leave', async (req, res) => {
 		let team = await Team.update({_id: req.body.teamId}, {$pull : {players: req.user }})
 		res.send([user, team])
 	} catch(err) {
-		console.log(err)
+		res.send(err)
 	}
 })
 

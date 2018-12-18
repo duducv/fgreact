@@ -7,7 +7,7 @@ import Player from './teamProfile/player'
 import LoginModal from './teamProfile/loginModal'
 import LeaveModal from './teamProfile/leaveModal'
 import Button from './teamProfile/button'
-import { getTeamData, enterTeam, sendPasswordInput } from '../../redux/actions/team'
+import { getTeamData, enterTeam, sendPasswordInput, leaveTeam } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
   componentDidMount () {
@@ -20,6 +20,13 @@ class TeamProfile extends Component {
       teamPassword: this.props.passwordinput
     }
     this.props.enterTeam(data)
+  }
+  leaveTeam = () => {
+    const { id } = this.props.match.params
+    const data = {
+      teamId: id
+    }
+    this.props.leaveTeam(data)
   }
   render () {
     if (this.props.loading) return <Loading />
@@ -42,7 +49,7 @@ class TeamProfile extends Component {
                 passwordSuccess={this.props.passwordsuccess}
                 alreadyHasATeam={this.props.alreadyhasateam}
               />
-              <LeaveModal />
+              <LeaveModal leaveTeam={this.leaveTeam}/>
             </div>
           </div>
           <div className='row'>
@@ -79,7 +86,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getTeamData: (payload) => dispatch(getTeamData(payload)),
   enterTeam: (payload) => dispatch(enterTeam(payload)),
-  sendPasswordInput: (payload) => dispatch(sendPasswordInput(payload))
+  sendPasswordInput: (payload) => dispatch(sendPasswordInput(payload)),
+  leaveTeam: (payload) => dispatch(leaveTeam(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamProfile)

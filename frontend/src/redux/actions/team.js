@@ -58,3 +58,15 @@ export const enterTeam = (payload) => {
     }
   }
 }
+
+export const leaveTeam = (payload)  => {
+  return async dispatch => {
+    try {
+      const result = await axios.put('/team/leave', payload)
+      if (result) console.log(result)
+      window.location.reload(true)
+    } catch (err) {
+      console.log(err.response.data)
+    }
+  }
+}

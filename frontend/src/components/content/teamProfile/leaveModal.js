@@ -17,7 +17,7 @@ class LeaveModal extends Component {
             </div>
             <div className='modal-footer'>
               <button type='button' className='btn btn-primary' data-dismiss='modal'>fechar</button>
-              <button type='button' className='btn btn-button'>Confirmar</button>
+              <button type='button' className='btn btn-button' onClick={this.props.leaveTeam}>Confirmar</button>
             </div>
           </div>
         </div>
