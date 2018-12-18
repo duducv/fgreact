@@ -59,8 +59,8 @@ export const enterTeam = (payload) => {
   }
 }
 
-export const leaveTeam = (payload)  => {
-  return async dispatch => {
+export const leaveTeam = (payload) => {
+  return async () => {
     try {
       const result = await axios.put('/team/leave', payload)
       if (result) console.log(result)
