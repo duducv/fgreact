@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 
 import auth from './reducers/loginReducer'
 import user from './reducers/user'
+import userById from './reducers/profileById'
 import createTeam from './reducers/createTeam'
 import profileLocation from './reducers/profileRouterReducer'
 import team from './reducers/teamReducer'
@@ -13,6 +14,7 @@ export default () => {
   const store = createStore(combineReducers({
     auth,
     user,
+    userById,
     createTeam,
     profileLocation,
     team

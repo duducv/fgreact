@@ -7,6 +7,7 @@ import Footer from './components/footer/footer'
 import Index from './components/content/index'
 import PageNotFound from './components/content/pagenotfound'
 import Profile from './components/content/profile'
+import ProfileById from './components/content/profileById'
 import MapVetos from './components/content/MapVetos'
 import TeamProfile from './components/content/teamProfile'
 import { logOn } from './redux/actions/login'
@@ -23,6 +24,7 @@ class AppRoutes extends Component {
           <Switch>
             <Route path='/' component={Index} exact />
             <Route path='/profile' component={Profile} />
+            <Route path='/player/:id' component={ProfileById} />
             <Route path='/vetos' component={MapVetos} />
             <Route path='/team/:id' component={TeamProfile} exact/>
             <Route component={PageNotFound} />

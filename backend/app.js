@@ -7,6 +7,7 @@ const SteamStrategy = require('./src/auth/authSteam')
 const cors = require('cors')
 const authRoutes = require('./src/auth/routes/authRoutes')
 const teamRoutes = require('./src/teams/routes/TeamRoute')
+const userByIdRoutes = require ('./src/userbyid/UserByIdRoute')
 
 mongoose.connect('mongodb://localhost:27017/fortalgamers')
 	.then(() => {
@@ -22,7 +23,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
 app.use(cors({origin:'http://localhost:8080', credentials: true}))
-app.use('/api', authRoutes, teamRoutes)
+app.use('/api', authRoutes, teamRoutes, userByIdRoutes)
 
 const port = 3000 || process.env.PORT 
 
