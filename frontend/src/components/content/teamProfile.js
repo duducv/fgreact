@@ -32,9 +32,11 @@ class TeamProfile extends Component {
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.teamname) {
-      console.log(!this.props.playerdata.team)
       const players = this.props.players.map((player) => {
-        return (<Link to={'/player/' + player._id} key={player._id}><Player avatarfull={player.avatarfull} nickname={player.nickname} /></Link>)
+        return (
+          <Link to={'/player/' + player._id} key={player._id}>
+            <Player avatarfull={player.avatarfull} nickname={player.nickname} />
+          </Link>)
       })
       return (
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
