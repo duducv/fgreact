@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import PageNotFound from './pagenotfound'
 import { getPlayerById } from '../../redux/actions/profileById'
 
 const steamLogo = require('../../../public/assets/images/logo-steam-white.svg')
@@ -14,6 +15,7 @@ class ProfileById extends Component {
   render () {
     let hasTeam = false
     if (this.props.team) hasTeam = true
+    if (!this.props.nickname) return <PageNotFound />
     return (
       <div className='wrapper bg-secondary'>
         <div className='container-fluid bg-white'>
@@ -62,7 +64,6 @@ class ProfileById extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth.auth,
   nickname: state.userById.data.nickname,
   avatar: state.userById.data.avatarfull,
   profileurl: state.userById.data.profileurl

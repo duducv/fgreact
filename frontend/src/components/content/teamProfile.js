@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 import Loading from './teamProfile/loading'
 import Player from './teamProfile/player'
@@ -34,7 +34,7 @@ class TeamProfile extends Component {
     if (this.props.teamname) {
       console.log(!this.props.playerdata.team)
       const players = this.props.players.map((player) => {
-        return (<Player key={player._id} avatarfull={player.avatarfull} nickname={player.nickname} />)
+        return (<Link to={'/player/' + player._id} key={player._id}><Player avatarfull={player.avatarfull} nickname={player.nickname} /></Link>)
       })
       return (
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
