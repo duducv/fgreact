@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get('/userbyid/:id', async (req,res) => {
 	try {
-		let user = await User.findById(req.params.id)
+		let user = await User.findById(req.params.id).populate('team')
 		if (user) res.send(user)
 	} catch (err) {
 		res.status(400).send('User not found in database')

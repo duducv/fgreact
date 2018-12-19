@@ -41,11 +41,6 @@ class ProfileById extends Component {
                   <li className='list-group-item bg-white'><a className='btn btn-steam text-white w-100 p-2' href={this.props.profileurl} target='_blank'>Perfil Steam <img src={steamLogo} style={{width: '2em'}} /></a></li>
                 </ul>
                 <ul className='list-group list-group-flush mt-2'>
-
-                  <li className='list-group-item bg-white'><button className='btn btn-success w-100' onClick={this.showCreateTeam}>TIME AQUI</button></li>
-
-                </ul>
-                <ul className='list-group list-group-flush mt-2'>
                   <li className='list-group-item bg-white rounded-top d-flex'>AMIGO<small>(s)</small></li>
                   <li className='list-group-item bg-white'>Não possui amigos</li>
                 </ul>
@@ -66,7 +61,8 @@ class ProfileById extends Component {
 const mapStateToProps = state => ({
   nickname: state.userById.data.nickname,
   avatar: state.userById.data.avatarfull,
-  profileurl: state.userById.data.profileurl
+  profileurl: state.userById.data.profileurl,
+  team: state.userById.data.team
 })
 
 const mapDispatchToProps = dispatch => ({
