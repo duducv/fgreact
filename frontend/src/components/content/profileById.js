@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import PageNotFound from './pagenotfound'
 import { getPlayerById } from '../../redux/actions/profileById'
@@ -16,6 +16,7 @@ class ProfileById extends Component {
     let hasTeam = false
     if (this.props.team) hasTeam = true
     if (!this.props.nickname) return <PageNotFound />
+    if (this.props.loggeduserid === this.props.match.params.id) return <Redirect to='/profile' />
     return (
       <div className='wrapper bg-secondary'>
         <div className='container-fluid bg-white'>
@@ -60,6 +61,7 @@ class ProfileById extends Component {
 
 const mapStateToProps = state => ({
   nickname: state.userById.data.nickname,
+  loggeduserid: state.user.data._id,
   avatar: state.userById.data.avatarfull,
   profileurl: state.userById.data.profileurl,
   team: state.userById.data.team

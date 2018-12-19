@@ -43,7 +43,7 @@ class TeamProfile extends Component {
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='rounded-circle img-fluid img-thumbnail' src='https://via.placeholder.com/100' />
-              <Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />
+              {this.props.auth ? (<Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />) : (null)}
               <LoginModal
                 enterTeam={this.enterTeam}
                 passwordInput={(data) => this.props.sendPasswordInput(data)}
@@ -73,6 +73,7 @@ class TeamProfile extends Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth.auth,
   loading: state.team.loading,
   teamname: state.team.data.name,
   teamid: state.team.data._id,
