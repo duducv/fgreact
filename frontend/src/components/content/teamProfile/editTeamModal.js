@@ -13,11 +13,17 @@ class EditTeamModal extends Component {
               </button>
             </div>
             <div className='modal-body'>
-              <form>
-                <div className='form-group'>
-                  <h1>Teste</h1>
-                </div>
-              </form>
+              <div class='btn-group btn-group-toggle d-flex justify-content-center' data-toggle='buttons'>
+                <label class='btn btn-primary active'>
+                  <input type='radio' name='options' id='option1' autoComplete='off' checked /> Active
+                </label>
+                <label class='btn btn-primary'>
+                  <input type='radio' name='options' id='option2' autoComplete='off' /> Radio
+                </label>
+                <label class='btn btn-primary'>
+                  <input type='radio' name='options' id='option3' autoComplete='off' /> Radio
+                </label>
+              </div>
             </div>
             <div className='modal-footer'>
               <button type='button' className='btn btn-primary' data-dismiss='modal'>Fechar</button>

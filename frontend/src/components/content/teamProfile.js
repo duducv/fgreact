@@ -46,7 +46,7 @@ class TeamProfile extends Component {
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
               <img className='img-thumbnail rounded-circle' src='http://localhost:3000/api/csgobanner' style={{width: '7em', height: '7em'}}/>
-              {this.props.playerdata.team._id === this.props.match.params.id ? (<EditButton playerdata={this.props.playerdata}/>) : (null) }
+              {this.props.auth ? (<EditButton playerdata={this.props.playerdata}/>) : (null)}
               <EditTeamModal />
               {this.props.auth ? (<Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />) : (null)}
               <LoginModal
