@@ -42,7 +42,7 @@ class TeamProfile extends Component {
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
-              <img className='rounded-circle img-fluid img-thumbnail' src='https://via.placeholder.com/100' />
+              <img className='img-thumbnail rounded-circle' src='http://localhost:3000/csgobanner' style={{width: '7em', height: '7em'}}/>
               {this.props.auth ? (<Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />) : (null)}
               <LoginModal
                 enterTeam={this.enterTeam}
