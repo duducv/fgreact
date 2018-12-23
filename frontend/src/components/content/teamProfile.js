@@ -7,6 +7,8 @@ import Player from './teamProfile/player'
 import LoginModal from './teamProfile/loginModal'
 import LeaveModal from './teamProfile/leaveModal'
 import Button from './teamProfile/button'
+import EditTeamModal from './teamProfile/editTeamModal'
+import EditButton from './teamProfile/editButton'
 import { getTeamData, enterTeam, sendPasswordInput, leaveTeam } from '../../redux/actions/team'
 
 class TeamProfile extends Component {
@@ -29,6 +31,7 @@ class TeamProfile extends Component {
     this.props.leaveTeam(data)
   }
   render () {
+    console.log(this.props.playerdata)
     if (this.props.loading) return <Loading />
     if (this.props.notfound) return <Redirect from='/team:id' to='/notfound' />
     if (this.props.teamname) {
@@ -42,7 +45,9 @@ class TeamProfile extends Component {
         <div className='container-fluid bg-primary-shadow mt-4' style={{height: '77vh'}}>
           <div className='row'>
             <div className='col bg-primary-shadow d-flex align-items-center justify-content-center' style={{height: '180px'}}>
-              <img className='img-thumbnail rounded-circle' src='http://localhost:3000/csgobanner' style={{width: '7em', height: '7em'}}/>
+              <img className='img-thumbnail rounded-circle' src='http://localhost:3000/api/csgobanner' style={{width: '7em', height: '7em'}}/>
+              {this.props.playerdata.team._id === this.props.match.params.id ? (<EditButton playerdata={this.props.playerdata}/>) : (null) }
+              <EditTeamModal />
               {this.props.auth ? (<Button playerdata={this.props.playerdata} teamid={this.props.match.params.id} />) : (null)}
               <LoginModal
                 enterTeam={this.enterTeam}
